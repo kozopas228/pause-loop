@@ -1,0 +1,23 @@
+# Bundle/Output
+node_modules
+dist
+dist-ssr
+*.local
+
+/backend/.serverless/**/*
+
+# IDEs
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS
+.DS_Store
+
+
+architecture_template.drawio
