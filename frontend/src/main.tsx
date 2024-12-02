@@ -3,13 +3,16 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import AboutPage from '@/pages/about/AboutPage.tsx';
-import MainPage from '@/pages/main/MainPage.tsx';
 import NotFoundPage from '@/pages/not-found/NotFoundPage.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '@/store/store.ts';
 import { ThemeProvider } from '@/shadcn/components/theme-provider.tsx';
+import HomePage from '@/pages/home/HomePage.tsx';
+import BreathingPage from '@/pages/breathing/BreathingPage.tsx';
+import NoisePage from '@/pages/noise/NoisePage.tsx';
+import PomodoroPage from '@/pages/pomodoro/PomodoroPage.tsx';
+import VisionPage from '@/pages/vision/VisionPage.tsx';
 
 const router = createBrowserRouter([
     {
@@ -18,11 +21,23 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <MainPage />,
+                element: <HomePage />,
             },
             {
-                path: '/about',
-                element: <AboutPage />,
+                path: '/breathing',
+                element: <BreathingPage />,
+            },
+            {
+                path: '/noise',
+                element: <NoisePage />,
+            },
+            {
+                path: '/pomodoro',
+                element: <PomodoroPage />,
+            },
+            {
+                path: '/vision',
+                element: <VisionPage />,
             },
         ],
         errorElement: <NotFoundPage />,

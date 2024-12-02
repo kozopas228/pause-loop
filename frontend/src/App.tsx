@@ -7,10 +7,7 @@ function App() {
 
     return (
         <>
-            <Header />
-            <div className='container mx-auto px-4 md:px-6'>
-                <Outlet />
-            </div>
+            <Outlet />
         </>
     );
 }
