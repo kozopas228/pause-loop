@@ -8,6 +8,11 @@ import {
     VISION_TIMER_REST_DURATION,
 } from '@/utils/constants.ts';
 import TimerAlarmSound from '@/assets/timer-alarm.mp3';
+import Countdown, {
+    CountdownRenderProps,
+    CountdownTimeDelta,
+} from 'react-countdown';
+import { CountdownTimeDeltaFn } from 'react-countdown/dist/Countdown';
 
 enum TimerPhaseEnum {
     WORKING = 'Working',
@@ -30,12 +35,12 @@ const circumference = 2 * Math.PI * normalizedRadius;
 
 const VisionTimer = () => {
     const [phase, setPhase] = useState<TimerPhaseEnum>(TimerPhaseEnum.WORKING);
-    const [isPause, setIsPause] = useState<boolean>(true);
 
+    // 1 додається через баг, тому що інколи відображається на 1 менше потрібного
     const currentDurationMs =
         phase === TimerPhaseEnum.WORKING
-            ? VISION_TIMER_DURATION * 1000
-            : VISION_TIMER_REST_DURATION * 1000;
+            ? VISION_TIMER_DURATION * 1000 + 1
+            : VISION_TIMER_REST_DURATION * 1000 + 1;
 
     const [timeLeftMs, setTimeLeftMs] = useState(currentDurationMs);
     const percentage = (timeLeftMs / currentDurationMs) * 100;
@@ -43,66 +48,105 @@ const VisionTimer = () => {
     const audioRef = useRef<any>(null);
     const constantAudioIntervalRef = useRef<any>(null);
 
-    useEffect(() => {
-        let timeout: NodeJS.Timeout | null = null;
+    const [startTime, setStartTime] = useState(Date.now());
 
-        if (!isPause) {
-            if (timeLeftMs > -1) {
-                timeout = setTimeout(() => {
-                    setTimeLeftMs((prev) => prev - 10); // Зменшуємо час на 10 мілісекунд
-                }, 10);
-            } else {
-                // Перемикання фази
-                setPhase((prevPhase) =>
-                    prevPhase === TimerPhaseEnum.WORKING
-                        ? TimerPhaseEnum.RESTING
-                        : TimerPhaseEnum.WORKING
-                );
-                setTimeLeftMs(
-                    phase === TimerPhaseEnum.WORKING
-                        ? VISION_TIMER_REST_DURATION * 1000
-                        : VISION_TIMER_DURATION * 1000
-                );
-                setIsPause(true);
+    function handleOnTick(props: CountdownTimeDelta) {
+        setTimeLeftMs(props.total);
+    }
 
-                if (audioRef.current) {
-                    audioRef.current.play();
+    function handleOnComplete() {
+        setPhase((prevPhase) =>
+            prevPhase === TimerPhaseEnum.WORKING
+                ? TimerPhaseEnum.RESTING
+                : TimerPhaseEnum.WORKING
+        );
 
-                    constantAudioIntervalRef.current = setInterval(() => {
-                        audioRef.current.play();
-                    }, VISION_TIMER_REPEAT_ALARM_INTERVAL);
+        setStartTime(Date.now());
 
-                    setTimeout(() => {
-                        clearInterval(constantAudioIntervalRef.current);
-                    }, VISION_TIMER_REPEAT_INTERVAL_STOP_AFTER);
-                }
+        setTimeLeftMs(
+            phase === TimerPhaseEnum.WORKING
+                ? VISION_TIMER_REST_DURATION * 1000
+                : VISION_TIMER_DURATION * 1000
+        );
+
+        audioRef.current?.play();
+
+        constantAudioIntervalRef.current = setInterval(() => {
+            audioRef.current.play();
+        }, VISION_TIMER_REPEAT_ALARM_INTERVAL);
+
+        setTimeout(() => {
+            clearInterval(constantAudioIntervalRef.current);
+        }, VISION_TIMER_REPEAT_INTERVAL_STOP_AFTER);
+    }
+
+    const renderer = (props: CountdownRenderProps): any => {
+        function handleStart() {
+            props.api.start();
+            clearInterval(constantAudioIntervalRef.current);
+            if (!props.api.isPaused()) {
+                setStartTime(Date.now());
             }
+
+            clearInterval(constantAudioIntervalRef.current);
         }
 
-        return () => clearTimeout(timeout!); // Очищаємо таймаут при перерендері
-    }, [isPause, timeLeftMs, phase]);
-
-
-    function handleStart() {
-        // Якщо ми натискаємо "Start", перезапускаємо таймер і зменшуємо час на 1 секунду
-        if (timeLeftMs === currentDurationMs) {
-            setTimeLeftMs((prev) => prev - 1);
+        function handlePause() {
+            props.api.pause();
         }
-        setIsPause(false);
-        clearInterval(constantAudioIntervalRef.current);
-    }
 
-    function handlePause() {
-        // Якщо ми натискаємо "Pause", скидаємо таймер і зупиняємо таймаут
-        setIsPause(true);
-    }
+        function handleStop() {
+            props.api.stop();
+            setPhase(TimerPhaseEnum.WORKING);
+            clearInterval(constantAudioIntervalRef.current);
+        }
 
-    function handleStop() {
-        setIsPause(true);
-        setPhase(TimerPhaseEnum.WORKING);
-        setTimeLeftMs(VISION_TIMER_DURATION * 1000);
-        clearInterval(constantAudioIntervalRef.current);
-    }
+        return (
+            <div className='absolute inset-0 flex flex-col items-center justify-center'>
+                <p className='mt-4 h-12 px-10 text-center font-semibold text-emerald-900'>
+                    {phase === TimerPhaseEnum.WORKING
+                        ? 'Working time'
+                        : 'Look into the distance'}
+                </p>
+                <div className='mt-1 text-3xl font-extrabold tracking-tight text-emerald-900 lg:text-4xl'>
+                    {props.formatted.minutes}:{props.formatted.seconds}
+                </div>
+                <div className='mt-8 flex w-16 justify-between'>
+                    {!props.api.isStarted() ? (
+                        <>
+                            <Play
+                                width={30}
+                                height={30}
+                                onClick={handleStart}
+                                className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
+                            />
+                            <Square
+                                width={30}
+                                height={30}
+                                onClick={handleStop}
+                                className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
+                            />
+                        </>
+                    ) : (
+                        <>
+                            <Pause
+                                width={30}
+                                height={30}
+                                onClick={handlePause}
+                                className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
+                            />
+                            <Square
+                                width={30}
+                                height={30}
+                                onClick={handleStop}
+                                className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
+                            />
+                        </>
+                    )}
+                </div>
+            </div>
+        );
+    };
 
     return (
         <div className='mt-4 flex flex-col items-center'>
@@ -140,49 +184,15 @@ const VisionTimer = () => {
                         }`}
                     />
                 </svg>
-                <div className='absolute inset-0 flex flex-col items-center justify-center'>
-                    <p className='mt-4 h-12 px-10 text-center font-semibold text-emerald-900'>
-                        {phase === TimerPhaseEnum.WORKING
-                            ? 'Working time'
-                            : 'Look into the distance'}
-                    </p>
-                    <div className='mt-1 text-3xl font-extrabold tracking-tight text-emerald-900 lg:text-4xl'>
-                        {formatTime(Math.floor(timeLeftMs / 1000))}
-                    </div>
-                    <div className='mt-8 flex w-16 justify-between'>
-                        {isPause ? (
-                            <>
-                                <Play
-                                    width={30}
-                                    height={30}
-                                    onClick={handleStart}
-                                    className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
-                                />
-                                <Square
-                                    width={30}
-                                    height={30}
-                                    onClick={handleStop}
-                                    className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
-                                />
-                            </>
-                        ) : (
-                            <>
-                                <Pause
-                                    width={30}
-                                    height={30}
-                                    onClick={handlePause}
-                                    className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
-                                />
-                                <Square
-                                    width={30}
-                                    height={30}
-                                    onClick={handleStop}
-                                    className='cursor-pointer stroke-emerald-900 opacity-50 hover:opacity-100'
-                                />
-                            </>
-                        )}
-                    </div>
-                </div>
+                <Countdown
+                    date={startTime + currentDurationMs}
+                    renderer={renderer}
+                    intervalDelay={10}
+                    precision={3}
+                    autoStart={false}
+                    onTick={handleOnTick}
+                    onComplete={handleOnComplete}
+                />
             </div>
             <audio
                 controls
