@@ -99,6 +99,7 @@ const VisionTimer = () => {
             setTimeLeftMs(VISION_TIMER_DURATION * 1000);
             setStartTime(Date.now());
             setPhase(TimerPhaseEnum.Working);
+
             clearInterval(constantAudioIntervalRef.current);
             clearTimeout(constantAudioTimeoutRef.current);
         }
