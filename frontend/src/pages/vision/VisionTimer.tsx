@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, ReactNode} from 'react';
 import { Pause, Play, Square } from 'lucide-react';
 import {
     VISION_TIMER_DURATION,
@@ -6,15 +6,15 @@ import {
     VISION_TIMER_REPEAT_INTERVAL_STOP_AFTER,
     VISION_TIMER_REST_DURATION,
 } from '@/utils/constants.ts';
-import TimerAlarmSound from '@/assets/timer-alarm.mp3';
+import TimerAlarmSound from '@/assets/vision-timer-alarm.mp3';
 import Countdown, {
     CountdownRenderProps,
     CountdownTimeDelta,
 } from 'react-countdown';
 
 enum TimerPhaseEnum {
-    WORKING = 'Working',
-    RESTING = 'Resting',
+    Working = 'Working',
+    Resting = 'Resting',
 }
 
 const size = 300;
@@ -32,10 +32,10 @@ const normalizedRadius = radius - strokeWidth / 2;
 const circumference = 2 * Math.PI * normalizedRadius;
 
 const VisionTimer = () => {
-    const [phase, setPhase] = useState<TimerPhaseEnum>(TimerPhaseEnum.WORKING);
+    const [phase, setPhase] = useState<TimerPhaseEnum>(TimerPhaseEnum.Working);
 
     const currentPhaseFullDurationMs =
-        phase === TimerPhaseEnum.WORKING
+        phase === TimerPhaseEnum.Working
             ? VISION_TIMER_DURATION * 1000
             : VISION_TIMER_REST_DURATION * 1000;
 
@@ -54,15 +54,15 @@ const VisionTimer = () => {
 
     function handleOnComplete() {
         setPhase((prevPhase) =>
-            prevPhase === TimerPhaseEnum.WORKING
-                ? TimerPhaseEnum.RESTING
-                : TimerPhaseEnum.WORKING
+            prevPhase === TimerPhaseEnum.Working
+                ? TimerPhaseEnum.Resting
+                : TimerPhaseEnum.Working
         );
 
         setStartTime(Date.now());
 
         setTimeLeftMs(
-            phase === TimerPhaseEnum.WORKING
+            phase === TimerPhaseEnum.Working
                 ? VISION_TIMER_REST_DURATION * 1000
                 : VISION_TIMER_DURATION * 1000
         );
@@ -78,7 +78,7 @@ const VisionTimer = () => {
         }, VISION_TIMER_REPEAT_INTERVAL_STOP_AFTER);
     }
 
-    const renderer = (props: CountdownRenderProps): any => {
+    function renderer(props: CountdownRenderProps): ReactNode {
         function handleStart() {
             props.api.start();
             clearInterval(constantAudioIntervalRef.current);
@@ -98,7 +98,7 @@ const VisionTimer = () => {
             props.api.stop();
             setTimeLeftMs(VISION_TIMER_DURATION * 1000);
             setStartTime(Date.now());
-            setPhase(TimerPhaseEnum.WORKING);
+            setPhase(TimerPhaseEnum.Working);
             clearInterval(constantAudioIntervalRef.current);
             clearTimeout(constantAudioTimeoutRef.current);
         }
@@ -106,7 +106,7 @@ const VisionTimer = () => {
         return (
             <div className='absolute inset-0 flex flex-col items-center justify-center'>
                 <p className='mt-4 h-12 px-10 text-center font-semibold text-emerald-900 dark:text-emerald-50'>
-                    {phase === TimerPhaseEnum.WORKING
+                    {phase === TimerPhaseEnum.Working
                         ? 'Working time'
                         : 'Look into the distance'}
                 </p>
@@ -148,7 +148,7 @@ const VisionTimer = () => {
                 </div>
             </div>
         );
-    };
+    }
 
     return (
         <div className='mt-4 flex flex-col items-center'>
@@ -180,7 +180,7 @@ const VisionTimer = () => {
                             (circumference * (100 - percentage)) / 100
                         }
                         className={`${
-                            phase === TimerPhaseEnum.WORKING
+                            phase === TimerPhaseEnum.Working
                                 ? 'stroke-emerald-500'
                                 : 'stroke-blue-500'
                         }`}
