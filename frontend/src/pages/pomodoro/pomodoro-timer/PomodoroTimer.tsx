@@ -39,15 +39,19 @@ const PomodoroTimer = () => {
             <div className='mt-16 grid w-auto grid-cols-3 overflow-hidden rounded-xl border border-amber-500'>
                 <div className='flex w-28 flex-col items-center justify-between bg-amber-100 py-2 md:w-40 md:py-4'>
                     <Laptop className='stroke-amber-500' />{' '}
-                    <span className='mt-1 text-amber-700'>Focus</span>
+                    <span className='mt-2 text-sm text-amber-700'>Focus</span>
                 </div>
                 <div className='flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4'>
                     <Smartphone className='stroke-amber-500' />{' '}
-                    <span className='mt-1 text-amber-700'>Small Break</span>
+                    <span className='mt-2 text-sm text-amber-700'>
+                        Small Break
+                    </span>
                 </div>
                 <div className='flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4'>
                     <Sprout className='stroke-amber-500' />{' '}
-                    <span className='mt-1 text-amber-700'>Long Break</span>
+                    <span className='mt-2 text-sm text-amber-700'>
+                        Long Break
+                    </span>
                 </div>
             </div>
         </div>
