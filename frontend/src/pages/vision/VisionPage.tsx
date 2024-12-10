@@ -6,7 +6,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 const VisionPage = () => {
     const [isShowDescription, setIsShowDescription] = useState(false);
 
-    const handleClick = () => {
+    const handleDescriptionClick = () => {
         setIsShowDescription((prev) => !prev);
     };
 
@@ -18,7 +18,7 @@ const VisionPage = () => {
             <div className='mx-auto my-8 cursor-pointer opacity-50 hover:opacity-100'>
                 <p
                     className='flex items-center justify-center text-sm font-medium text-emerald-900 dark:text-emerald-50'
-                    onClick={handleClick}>
+                    onClick={handleDescriptionClick}>
                     What is this?
                     {isShowDescription ? (
                         <ChevronUp
