@@ -81,7 +81,7 @@ const PomodoroCountdown = ({
 
         return (
             <>
-                <div className='mt-16 flex justify-center text-8xl font-extrabold text-amber-700'>
+                <div className='mt-16 flex justify-center text-8xl font-extrabold text-amber-700 dark:text-amber-400'>
                     {props.formatted.minutes}:{props.formatted.seconds}
                 </div>
                 <div className='mx-auto mt-8 flex w-16 justify-between'>
@@ -91,13 +91,13 @@ const PomodoroCountdown = ({
                                 width={30}
                                 height={30}
                                 onClick={handleStart}
-                                className='cursor-pointer stroke-amber-900 opacity-15 hover:opacity-100 dark:stroke-amber-50'
+                                className='cursor-pointer stroke-amber-900 dark:stroke-amber-500 opacity-15 hover:opacity-100 dark:stroke-amber-50'
                             />
                             <Square
                                 width={30}
                                 height={30}
                                 onClick={handleStop}
-                                className='cursor-pointer stroke-amber-900 opacity-15 hover:opacity-100 dark:stroke-amber-50'
+                                className='cursor-pointer stroke-amber-900 dark:stroke-amber-500 opacity-15 hover:opacity-100 dark:stroke-amber-50'
                             />
                         </>
                     ) : (
