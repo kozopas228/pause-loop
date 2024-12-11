@@ -13,6 +13,7 @@ import BreathingPage from '@/pages/breathing/BreathingPage.tsx';
 import NoisePage from '@/pages/noise/NoisePage.tsx';
 import PomodoroPage from '@/pages/pomodoro/PomodoroPage.tsx';
 import VisionPage from '@/pages/vision/VisionPage.tsx';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const router = createBrowserRouter([
     {
@@ -51,7 +52,9 @@ createRoot(document.getElementById('root')!).render(
         <QueryClientProvider client={queryClient}>
             <ThemeProvider>
                 <Provider store={store}>
-                    <RouterProvider router={router} />
+                    <AnimatePresence mode='wait'>
+                        <RouterProvider router={router} />
+                    </AnimatePresence>
                 </Provider>
             </ThemeProvider>
         </QueryClientProvider>

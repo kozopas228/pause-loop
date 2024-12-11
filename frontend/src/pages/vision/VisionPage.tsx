@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Header from '@/components/header/Header.tsx';
-import VisionTimer from '@/pages/vision/VisionTimer.tsx';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import BodyBackground from '@/components/body-background/BodyBackground.tsx';
+import Page from '@/components/page/Page.tsx';
+import VisionTimer from '@/pages/vision/VisionTimer.tsx';
 
 const VisionPage = () => {
     const [isShowDescription, setIsShowDescription] = useState(false);
@@ -11,10 +12,8 @@ const VisionPage = () => {
     };
 
     return (
-        <div className='flex min-h-screen flex-col bg-emerald-50 dark:bg-emerald-900'>
-            <Header />
+        <Page>
             <VisionTimer />
-            {/*<div className='flex-grow'></div>*/}
             <div className='mx-auto my-8 cursor-pointer opacity-50 hover:opacity-100'>
                 <p
                     className='flex items-center justify-center text-sm font-medium text-emerald-900 dark:text-emerald-50'
@@ -45,7 +44,9 @@ const VisionPage = () => {
                     </p>
                 </div>
             )}
-        </div>
+
+            <BodyBackground className={'bg-emerald-50 dark:bg-emerald-900'} />
+        </Page>
     );
 };
 
