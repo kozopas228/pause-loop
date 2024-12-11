@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Header from '@/components/header/Header.tsx';
 import PomodoroTimer from '@/pages/pomodoro/pomodoro-timer/PomodoroTimer.tsx';
 import { ChevronDown, ChevronUp } from 'lucide-react';
+import BodyBackground from '@/components/body-background/BodyBackground.tsx';
+import Page from '@/components/page/Page.tsx';
 
 const PomodoroPage = () => {
     const [isShowDescription, setIsShowDescription] = useState(false);
@@ -11,8 +12,7 @@ const PomodoroPage = () => {
     };
 
     return (
-        <div className='flex min-h-screen flex-col bg-amber-50'>
-            <Header />
+        <Page>
             <PomodoroTimer />
             <div className='mx-auto my-8 cursor-pointer opacity-50 hover:opacity-100'>
                 <p
@@ -45,7 +45,9 @@ const PomodoroPage = () => {
                     </p>
                 </div>
             )}
-        </div>
+
+            <BodyBackground className={'bg-amber-50 dark:bg-amber-900'} />
+        </Page>
     );
 };
 
