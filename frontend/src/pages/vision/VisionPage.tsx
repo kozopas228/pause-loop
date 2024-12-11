@@ -45,7 +45,7 @@ const VisionPage = () => {
                 </div>
             )}
 
-            <BodyBackground className={'bg-emerald-50 dark:bg-emerald-900'} />
+            <BodyBackground className={'bg-emerald-50 dark:bg-emerald-950'} />
         </Page>
     );
 };
