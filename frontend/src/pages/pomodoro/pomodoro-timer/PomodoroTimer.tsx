@@ -30,23 +30,23 @@ const PomodoroTimer = () => {
                 <PomodoroTomato isFilled={pomodoroCount > 2} />
                 <PomodoroTomato isFilled={pomodoroCount > 3} />
             </div>
-            <div className='mt-16 grid grid-cols-3 overflow-hidden rounded-xl border border-amber-500'>
+            <div className='mt-16 grid grid-cols-3 overflow-hidden rounded-xl border border-amber-500 dark:border-amber-700'>
                 <div
-                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.Focus && 'bg-amber-100'}`}>
-                    <Laptop className='stroke-amber-500' />{' '}
-                    <span className='mt-2 text-sm text-amber-700'>Focus</span>
+                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.Focus && 'bg-amber-100 dark:bg-amber-800'}`}>
+                    <Laptop className='stroke-amber-500 dark:stroke-amber-600' />{' '}
+                    <span className='mt-2 text-sm text-amber-700 dark:text-amber-500'>Focus</span>
                 </div>
                 <div
-                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.ShortBreak && 'bg-amber-100'}`}>
-                    <Smartphone className='stroke-amber-500' />{' '}
-                    <span className='mt-2 text-sm text-amber-700'>
+                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.ShortBreak && 'bg-amber-100 dark:bg-amber-800'}`}>
+                    <Smartphone className='stroke-amber-500 dark:stroke-amber-600' />{' '}
+                    <span className='mt-2 text-sm text-amber-700 dark:text-amber-500'>
                         Small Break
                     </span>
                 </div>
                 <div
-                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.LongBreak && 'bg-amber-100'}`}>
-                    <Sprout className='stroke-amber-500' />{' '}
-                    <span className='mt-2 text-sm text-amber-700'>
+                    className={`flex w-28 flex-col items-center justify-between py-2 md:w-40 md:py-4 ${phase === PomodoroPhaseEnum.LongBreak && 'bg-amber-100 dark:bg-amber-800'}`}>
+                    <Sprout className='stroke-amber-500 dark:stroke-amber-600' />{' '}
+                    <span className='mt-2 text-sm text-amber-700 dark:text-amber-500'>
                         Long Break
                     </span>
                 </div>
