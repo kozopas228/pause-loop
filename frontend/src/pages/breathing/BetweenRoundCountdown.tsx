@@ -1,18 +1,33 @@
-import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react';
+import React, {
+    Dispatch,
+    MutableRefObject,
+    ReactNode,
+    SetStateAction,
+    useState,
+} from 'react';
 import Countdown, { CountdownRenderProps } from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
-import {BREATHING_PAUSE_BETWEEN_ROUNDS, BREATHING_PREPARATION_TIME} from '@/utils/constants.ts';
+import {
+    BREATHING_PAUSE_BETWEEN_ROUNDS,
+    BREATHING_PREPARATION_TIME,
+} from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     setRound: Dispatch<SetStateAction<number>>;
+    gongAudioRef: MutableRefObject<any>;
 }
 
-const BetweenRoundCountdown = ({ setPhase, setRound }: IProps) => {
+const BetweenRoundCountdown = ({
+    setPhase,
+    setRound,
+    gongAudioRef,
+}: IProps) => {
     const [startTime, setStartTime] = useState(Date.now());
 
     function handleOnComplete() {
+        gongAudioRef.current?.play();
         setPhase(BreathingPhaseEnum.Breathing);
         setRound((prev) => prev + 1);
     }

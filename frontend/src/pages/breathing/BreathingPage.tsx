@@ -12,6 +12,11 @@ import BetweenRoundCountdown from '@/pages/breathing/BetweenRoundCountdown.tsx';
 import BreathingFinish from '@/pages/breathing/BreathingFinish.tsx';
 import BreatheInSound from '@/assets/inhale.mp3';
 import BreatheOutSound from '@/assets/exhale.mp3';
+import TickSound from '@/assets/tick.mp3';
+import BellSound from '@/assets/bell.mp3';
+import TickFastSound from '@/assets/tick-fast.mp3';
+import AlarmSound from '@/assets/alarm-clock.mp3';
+import GongSound from '@/assets/gong.mp3';
 
 const BreathingPage = () => {
     const [phase, setPhase] = useState(BreathingPhaseEnum.NotStarted);
@@ -19,6 +24,11 @@ const BreathingPage = () => {
 
     const breatheInAudioRef = useRef<any>(null);
     const breatheOutAudioRef = useRef<any>(null);
+    const tickAudioRef = useRef<any>(null);
+    const tickFastAudioRef = useRef<any>(null);
+    const bellAudioRef = useRef<any>(null);
+    const alarmAudioRef = useRef<any>(null);
+    const gongAudioRef = useRef<any>(null);
 
     return (
         <Page>
@@ -26,33 +36,29 @@ const BreathingPage = () => {
                 Round: <b>{round}</b>
             </h1>
 
-            <InhaleHoldingCountdown
-                setPhase={setPhase}
-                round={round}
-                breatheOutAudioRef={breatheOutAudioRef}
-            />
-
-            <BreathHoldingCountdown
-                setPhase={setPhase}
-                round={round}
-                breatheInAudioRef={breatheInAudioRef}
-            />
-
             {phase === BreathingPhaseEnum.NotStarted ? (
                 <BreathingStartButton setPhase={setPhase} />
             ) : phase === BreathingPhaseEnum.Preparation ? (
-                <PreparationCountdown setPhase={setPhase} />
+                <PreparationCountdown
+                    setPhase={setPhase}
+                    gongAudioRef={gongAudioRef}
+                />
             ) : phase === BreathingPhaseEnum.Breathing ? (
                 <BreathingCircle
                     setPhase={setPhase}
                     breatheInAudioRef={breatheInAudioRef}
                     breatheOutAudioRef={breatheOutAudioRef}
+                    bellAudioRef={bellAudioRef}
                 />
             ) : phase === BreathingPhaseEnum.BreathHolding ? (
                 <BreathHoldingCountdown
                     setPhase={setPhase}
                     round={round}
                     breatheInAudioRef={breatheInAudioRef}
+                    tickAudioRef={tickAudioRef}
+                    tickFastAudioRef={tickFastAudioRef}
+                    alarmAudioRef={alarmAudioRef}
+                    bellAudioRef={bellAudioRef}
                 />
             ) : phase === BreathingPhaseEnum.InhaleHolding ? (
                 <InhaleHoldingCountdown
@@ -64,6 +70,7 @@ const BreathingPage = () => {
                 <BetweenRoundCountdown
                     setPhase={setPhase}
                     setRound={setRound}
+                    gongAudioRef={gongAudioRef}
                 />
             ) : (
                 <BreathingFinish
@@ -82,6 +89,36 @@ const BreathingPage = () => {
                 controls
                 src={BreatheOutSound}
                 ref={breatheOutAudioRef}
+                className='hidden'
+            />
+            <audio
+                controls
+                src={TickSound}
+                ref={tickAudioRef}
+                className='hidden'
+            />
+            <audio
+                controls
+                src={TickFastSound}
+                ref={tickFastAudioRef}
+                className='hidden'
+            />
+            <audio
+                controls
+                src={BellSound}
+                ref={bellAudioRef}
+                className='hidden'
+            />
+            <audio
+                controls
+                src={AlarmSound}
+                ref={alarmAudioRef}
+                className='hidden'
+            />
+            <audio
+                controls
+                src={GongSound}
+                ref={gongAudioRef}
                 className='hidden'
             />
 

@@ -1,5 +1,14 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
-import Countdown, { CountdownRendererFn } from 'react-countdown';
+import React, {
+    Dispatch,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
+import Countdown, {
+    CountdownRendererFn,
+    CountdownTimeDelta,
+} from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { describeArc } from '@/utils/math.ts';
 import { BREATHING_BREATH_HOLD_BASE_TIME } from '@/utils/constants.ts';
@@ -9,15 +18,58 @@ interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     round: number;
     breatheInAudioRef: React.MutableRefObject<any>;
+    tickAudioRef: React.MutableRefObject<any>;
+    tickFastAudioRef: React.MutableRefObject<any>;
+    alarmAudioRef: React.MutableRefObject<any>;
+    bellAudioRef: React.MutableRefObject<any>;
 }
 
 const BreathHoldingCountdown = ({
     breatheInAudioRef,
     setPhase,
     round,
+    tickAudioRef,
+    tickFastAudioRef,
+    alarmAudioRef,
+    bellAudioRef,
 }: IProps) => {
     const radius = 256; // Радіус кола
     const radiusMobile = 256 / 2; // Радіус кола
+
+    useEffect(() => {
+        // грати "клац" кожну секунду
+        setTimeout(() => {
+            tickAudioRef.current?.play();
+        }, 0);
+        const audioTickInterval = setInterval(() => {
+            tickAudioRef.current?.play();
+        }, 1000);
+
+        // за 10 секунд до кінця перестати "клацати" і почати "клацати" більш агресивно
+        let audioTickFastInterval: NodeJS.Timeout;
+        const audioTickFastTimeout = setTimeout(
+            () => {
+                audioTickFastInterval = setInterval(() => {
+                    tickAudioRef.current?.play();
+                }, 10);
+
+                clearInterval(audioTickInterval);
+            },
+            BREATHING_BREATH_HOLD_BASE_TIME * 1000 * round - 10000
+        );
+
+        return () => {
+            clearTimeout(audioTickFastTimeout);
+
+            if (audioTickInterval) {
+                clearInterval(audioTickInterval);
+            }
+
+            if (audioTickFastInterval) {
+                clearInterval(audioTickFastInterval);
+            }
+        };
+    }, [round, tickAudioRef, tickFastAudioRef]);
 
     const renderer: CountdownRendererFn = (props) => {
         const progress =
@@ -55,6 +107,7 @@ const BreathHoldingCountdown = ({
     };
 
     const handleComplete = () => {
+        bellAudioRef.current?.play();
         breatheInAudioRef.current?.play();
         setPhase(BreathingPhaseEnum.InhaleHolding);
     };
