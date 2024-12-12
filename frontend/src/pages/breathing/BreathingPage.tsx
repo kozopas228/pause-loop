@@ -22,7 +22,7 @@ const BreathingPage = () => {
 
     return (
         <Page>
-            <h1 className='mt-8 text-center text-sm text-sky-900 dark:text-sky-50'>
+            <h1 className='text-center text-sm text-sky-900 dark:text-sky-50'>
                 Round: <b>{round}</b>
             </h1>
 
