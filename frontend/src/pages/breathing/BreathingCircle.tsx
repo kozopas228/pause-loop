@@ -1,19 +1,31 @@
-import React, {Dispatch, SetStateAction, useEffect, useRef, useState,} from 'react';
+import React, {
+    Dispatch,
+    SetStateAction,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import {
     BREATHING_BREATH_DURATION,
     BREATHING_BREATHS_AMOUNT,
     BREATHING_HOLD_BREATH_SMALL_DURATION,
 } from '@/utils/constants.ts';
-import {BreathingPhaseEnum} from '@/pages/breathing/breathing-phase.enum.ts';
-import {motion} from 'framer-motion';
+import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
+import { motion } from 'framer-motion';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
+    breatheInAudioRef: React.MutableRefObject<any>;
+    breatheOutAudioRef: React.MutableRefObject<any>;
 }
 
-const BreathingCircle = ({ setPhase }: IProps) => {
+const BreathingCircle = ({
+    setPhase,
+    breatheOutAudioRef,
+    breatheInAudioRef,
+}: IProps) => {
     const [isBreath, setIsBreath] = useState(false);
-    const [step, setStep] = useState(1);
+    const [step, setStep] = useState(0);
 
     const breathingIntervalRef = useRef<any>(null);
     const stepsIntervalRef = useRef<any>(null);
@@ -41,11 +53,20 @@ const BreathingCircle = ({ setPhase }: IProps) => {
                 );
             });
         }
-    }, [step]);
+
+        if (step > 0) {
+            if (isBreath) {
+                breatheInAudioRef.current?.play();
+            } else {
+                breatheOutAudioRef.current?.play();
+            }
+        }
+    }, [isBreath, setPhase, step]);
 
     useEffect(() => {
         const breathingTimeout = setTimeout(() => {
             setIsBreath((prev) => !prev);
+            setStep((prev) => prev + 1);
         }, 0);
 
         breathingIntervalRef.current = setInterval(
@@ -77,7 +98,7 @@ const BreathingCircle = ({ setPhase }: IProps) => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}>
             <div
-                className={`h-[512px] w-[512px] rounded-full bg-blue-300 ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
+                className={`h-[512px] w-[512px] rounded-full bg-blue-300 dark:bg-sky-700 ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
@@ -91,7 +112,7 @@ const BreathingCircle = ({ setPhase }: IProps) => {
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
-            <p className='mt-6 text-xl font-semibold text-sky-950'>
+            <p className='mt-6 text-xl font-semibold text-sky-950 dark:text-sky-50'>
                 {isBreath
                     ? step === BREATHING_BREATHS_AMOUNT
                         ? 'Breathe In & Hold a little'
@@ -100,7 +121,7 @@ const BreathingCircle = ({ setPhase }: IProps) => {
                       ? 'Breathe Out & Hold'
                       : 'Breathe Out'}
             </p>
-            <p className='mt-2 text-sm text-sky-900'>
+            <p className='mt-2 text-sm text-sky-900 dark:text-sky-50'>
                 {step}/{BREATHING_BREATHS_AMOUNT}
             </p>
         </motion.div>
