@@ -98,17 +98,17 @@ const BreathingCircle = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}>
             <div
-                className={`h-[512px] w-[512px] rounded-full bg-blue-300 dark:bg-sky-700 ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
+                className={`h-[256px] w-[256px] rounded-full bg-blue-300 dark:bg-sky-700 md:h-[512px] md:w-[512px] ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
             <div
-                className={`translate absolute top-0 z-0 h-[512px] w-[512px] rounded-full border-[3px] border-blue-200 bg-transparent`}
+                className={`translate absolute top-0 z-0 h-[256px] w-[256px] rounded-full border-[3px] border-blue-200 dark:border-blue-300 bg-transparent md:h-[512px] md:w-[512px]`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
             <div
-                className={`translate absolute top-0 z-20 h-[512px] w-[512px] scale-50 rounded-full border-[64px] border-blue-200 bg-transparent`}
+                className={`translate absolute top-0 z-20 h-[256px] w-[256px] scale-50 rounded-full border-[64px] border-blue-200 bg-transparent md:h-[512px] md:w-[512px]`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>

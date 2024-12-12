@@ -17,6 +17,7 @@ const BreathHoldingCountdown = ({
     round,
 }: IProps) => {
     const radius = 256; // Радіус кола
+    const radiusMobile = 256 / 2; // Радіус кола
 
     const renderer: CountdownRendererFn = (props) => {
         const progress =
@@ -30,18 +31,18 @@ const BreathHoldingCountdown = ({
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}>
                 <div className='absolute left-[50%] top-[51%] z-10 flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'>
-                    <p className='text-lg font-semibold text-sky-900 dark:text-sky-300'>
+                    <p className='text-center font-semibold text-sky-900 dark:text-sky-300 md:text-lg'>
                         Hold Breath For:
                     </p>
-                    <div className='mt-2 flex justify-center text-5xl font-extrabold text-sky-700 dark:text-sky-300'>
+                    <div className='mt-2 flex justify-center text-3xl font-extrabold text-sky-700 dark:text-sky-300 md:text-5xl'>
                         {props.formatted.minutes}:{props.formatted.seconds}
                     </div>
-                    <p className='mt-6 text-xl font-bold text-sky-900 dark:text-sky-300'>
+                    <p className='mt-6 text-center text-sm font-bold text-sky-900 dark:text-sky-300 md:text-xl'>
                         Remember, you can Breath In if you need to.
                     </p>
                 </div>
                 <svg
-                    className='rotate-270 z-0 h-[512px] w-[512px] transform rounded-full border border-blue-200 dark:border-sky-700'
+                    className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 dark:border-sky-700 md:h-[512px] md:w-[512px]'
                     viewBox='0 0 512 512'>
                     {/* Сектор "Pacman" */}
                     <path

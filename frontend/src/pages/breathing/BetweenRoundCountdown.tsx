@@ -1,7 +1,7 @@
 import React, { Dispatch, ReactNode, SetStateAction, useState } from 'react';
 import Countdown, { CountdownRenderProps } from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
-import { BREATHING_PREPARATION_TIME } from '@/utils/constants.ts';
+import {BREATHING_PAUSE_BETWEEN_ROUNDS, BREATHING_PREPARATION_TIME} from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
 
 interface IProps {
@@ -21,7 +21,7 @@ const BetweenRoundCountdown = ({ setPhase, setRound }: IProps) => {
         return (
             <div className='relative mt-8 flex flex-col items-center justify-center'>
                 <div
-                    className={`z-0 h-[512px] w-[512px] rounded-full bg-blue-200 dark:bg-sky-700`}>
+                    className={`z-0 h-[256px] w-[256px] rounded-full bg-blue-200 dark:bg-sky-700 md:h-[512px] md:w-[512px]`}>
                     <motion.div
                         className='absolute left-[50%] top-[46%] flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'
                         initial={{ opacity: 0 }}
@@ -42,7 +42,7 @@ const BetweenRoundCountdown = ({ setPhase, setRound }: IProps) => {
 
     return (
         <Countdown
-            date={startTime + BREATHING_PREPARATION_TIME * 1000}
+            date={startTime + BREATHING_PAUSE_BETWEEN_ROUNDS * 1000}
             renderer={renderer}
             intervalDelay={10}
             precision={3}

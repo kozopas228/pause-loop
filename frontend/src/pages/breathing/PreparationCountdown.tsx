@@ -19,7 +19,7 @@ const PreparationCountdown = ({ setPhase }: IProps) => {
         return (
             <div className='relative mt-8 flex flex-col items-center justify-center'>
                 <div
-                    className={`z-0 h-[512px] w-[512px] rounded-full bg-blue-200 dark:bg-sky-700`}>
+                    className={`z-0 h-[256px] w-[256px] rounded-full bg-blue-200 dark:bg-sky-700 md:h-[512px] md:w-[512px]`}>
                     <motion.div
                         className='absolute left-[50%] top-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'
                         initial={{ opacity: 0 }}
@@ -29,7 +29,7 @@ const PreparationCountdown = ({ setPhase }: IProps) => {
                         <p className='text-lg font-semibold text-sky-900 dark:text-sky-300'>
                             Be ready to inhale in:
                         </p>
-                        <div className='mt-2 flex justify-center text-8xl font-extrabold text-sky-700 dark:text-sky-300'>
+                        <div className='mt-2 flex justify-center text-5xl font-extrabold text-sky-700 dark:text-sky-300 md:text-8xl'>
                             {props.formatted.minutes}:{props.formatted.seconds}
                         </div>
                     </motion.div>

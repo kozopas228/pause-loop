@@ -15,7 +15,7 @@ const BreathingStartButton = ({ setPhase }: IProps) => {
     return (
         <div className='relative mt-8 flex flex-col items-center justify-center'>
             <motion.div
-                className={`dark: z-0 h-[512px] w-[512px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500`}
+                className={`dark: z-0 h-[256px] w-[256px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500 md:h-[512px] md:w-[512px]`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -23,7 +23,7 @@ const BreathingStartButton = ({ setPhase }: IProps) => {
                 onClick={handleOnStartClick}>
                 <div className='absolute left-[50%] top-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'>
                     <Play
-                        size={64}
+                        className='h-[48px] w-[48px] md:h-[64px] md:w-[64px]'
                         strokeWidth={1}
                     />
                     <p className='mt-2 font-semibold'>Begin Breathing</p>
