@@ -1,13 +1,25 @@
-import React from 'react';
-import Header from '@/components/header/Header.tsx';
+import React, { useState } from 'react';
 import Page from '@/components/page/Page.tsx';
 import BodyBackground from '@/components/body-background/BodyBackground.tsx';
+import BreathingCircle from '@/pages/breathing/BreathingCircle.tsx';
+
+enum BreathingPhaseEnum {
+    NotStarted,
+    Preparation,
+    Breathing,
+    BreathHolding,
+    InhaleHolding,
+    BetweenRoundRelax,
+    Finish,
+}
 
 const BreathingPage = () => {
+    const [phase, setPhase] = useState(BreathingPhaseEnum.NotStarted);
+
     return (
         <Page>
-            <h1 className={'text-8xl font-extrabold'}>Breathing</h1>
-            <BodyBackground className={'bg-sky-500'} />
+            <BreathingCircle />
+            <BodyBackground className={'bg-sky-50'} />
         </Page>
     );
 };
