@@ -28,7 +28,7 @@ const InhaleHoldingCountdown = ({
         return (
             <div>
                 <motion.div
-                    className='absolute left-[50%] top-[46%] z-10 flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'
+                    className='absolute left-[50%] top-[52%] z-10 flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center md:top-[51%]'
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
