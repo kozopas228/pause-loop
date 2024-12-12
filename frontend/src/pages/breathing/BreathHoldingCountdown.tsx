@@ -30,7 +30,7 @@ const BreathHoldingCountdown = ({
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}>
-                <div className='absolute left-[50%] top-[51%] z-10 flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'>
+                <div className='absolute left-[50%] top-[55%] z-10 flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center md:top-[51%]'>
                     <p className='text-center font-semibold text-sky-900 dark:text-sky-300 md:text-lg'>
                         Hold Breath For:
                     </p>

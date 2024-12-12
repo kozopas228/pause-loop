@@ -26,6 +26,18 @@ const BreathingPage = () => {
                 Round: <b>{round}</b>
             </h1>
 
+            <InhaleHoldingCountdown
+                setPhase={setPhase}
+                round={round}
+                breatheOutAudioRef={breatheOutAudioRef}
+            />
+
+            <BreathHoldingCountdown
+                setPhase={setPhase}
+                round={round}
+                breatheInAudioRef={breatheInAudioRef}
+            />
+
             {phase === BreathingPhaseEnum.NotStarted ? (
                 <BreathingStartButton setPhase={setPhase} />
             ) : phase === BreathingPhaseEnum.Preparation ? (
