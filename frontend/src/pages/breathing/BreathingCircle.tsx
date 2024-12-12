@@ -17,12 +17,14 @@ interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     breatheInAudioRef: React.MutableRefObject<any>;
     breatheOutAudioRef: React.MutableRefObject<any>;
+    bellAudioRef: React.MutableRefObject<any>;
 }
 
 const BreathingCircle = ({
     setPhase,
     breatheOutAudioRef,
     breatheInAudioRef,
+    bellAudioRef,
 }: IProps) => {
     const [isBreath, setIsBreath] = useState(false);
     const [step, setStep] = useState(0);
@@ -31,6 +33,7 @@ const BreathingCircle = ({
     const stepsIntervalRef = useRef<any>(null);
 
     useEffect(() => {
+        // зробити невелику паузу на останньому вдиху
         if (step === BREATHING_BREATHS_AMOUNT) {
             clearInterval(breathingIntervalRef.current);
             clearInterval(stepsIntervalRef.current);
@@ -60,6 +63,10 @@ const BreathingCircle = ({
             } else {
                 breatheOutAudioRef.current?.play();
             }
+        }
+
+        if (BREATHING_BREATHS_AMOUNT - step === 1) {
+            bellAudioRef.current?.play();
         }
     }, [isBreath, setPhase, step]);
 

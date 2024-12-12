@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, {Dispatch, MutableRefObject, SetStateAction} from 'react';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { Play } from 'lucide-react';
 import { motion } from 'framer-motion';
