@@ -1,6 +1,6 @@
 import React, {
     Dispatch,
-    SetStateAction,
+    SetStateAction, useContext,
     useEffect,
     useRef,
     useState,
@@ -12,20 +12,17 @@ import {
 } from '@/utils/constants.ts';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { motion } from 'framer-motion';
+import {BreathingContext} from "@/pages/breathing/breathing.context.ts";
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
-    breatheInAudioRef: React.MutableRefObject<any>;
-    breatheOutAudioRef: React.MutableRefObject<any>;
-    bellAudioRef: React.MutableRefObject<any>;
 }
 
 const BreathingCircle = ({
     setPhase,
-    breatheOutAudioRef,
-    breatheInAudioRef,
-    bellAudioRef,
 }: IProps) => {
+    const context = useContext(BreathingContext);
+
     const [isBreath, setIsBreath] = useState(false);
     const [step, setStep] = useState(0);
 
@@ -59,16 +56,23 @@ const BreathingCircle = ({
 
         if (step > 0) {
             if (isBreath) {
-                breatheInAudioRef.current?.play();
+                context?.breatheInAudioRef.current?.play();
             } else {
-                breatheOutAudioRef.current?.play();
+                context?.breatheOutAudioRef.current?.play();
             }
         }
 
         if (BREATHING_BREATHS_AMOUNT - step === 1) {
-            bellAudioRef.current?.play();
+            context?.bellAudioRef.current?.play();
         }
-    }, [isBreath, setPhase, step]);
+    }, [
+        context?.bellAudioRef,
+        context?.breatheInAudioRef,
+        context?.breatheOutAudioRef,
+        isBreath,
+        setPhase,
+        step,
+    ]);
 
     useEffect(() => {
         const breathingTimeout = setTimeout(() => {
@@ -105,17 +109,17 @@ const BreathingCircle = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}>
             <div
-                className={`h-[256px] w-[256px] rounded-full bg-blue-300 dark:bg-sky-700 md:h-[512px] md:w-[512px] ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
+                className={`h-[256px] w-[256px] rounded-full bg-blue-300 dark:bg-sky-700 md:h-[384px] md:w-[384px] ${isBreath ? 'scale-100' : 'scale-50'} transition-transform ${isBreath ? 'ease-out' : 'ease-in'} z-10`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
             <div
-                className={`translate absolute top-0 z-0 h-[256px] w-[256px] rounded-full border-[3px] border-blue-200 bg-transparent dark:border-blue-300 md:h-[512px] md:w-[512px]`}
+                className={`translate absolute top-0 z-0 h-[256px] w-[256px] rounded-full border-[3px] border-blue-200 bg-transparent dark:border-blue-300 md:h-[384px] md:w-[384px]`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>
             <div
-                className={`translate absolute top-0 z-20 h-[256px] w-[256px] scale-50 rounded-full border-[64px] border-blue-200 bg-transparent md:h-[512px] md:w-[512px]`}
+                className={`translate absolute top-0 z-20 h-[256px] w-[256px] scale-50 rounded-full border-[64px] border-blue-200 bg-transparent md:h-[384px] md:w-[384px]`}
                 style={{
                     transitionDuration: `${BREATHING_BREATH_DURATION * 1000}ms`,
                 }}></div>

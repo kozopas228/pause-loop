@@ -1,21 +1,34 @@
-import React, {Dispatch, MutableRefObject, SetStateAction} from 'react';
+import React, {
+    Dispatch,
+    MutableRefObject,
+    SetStateAction,
+    useContext,
+} from 'react';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { Play } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
 }
 
 const BreathingStartButton = ({ setPhase }: IProps) => {
+    const context = useContext(BreathingContext);
+
     function handleOnStartClick() {
         setPhase(BreathingPhaseEnum.Preparation);
+
+        if (context?.meditationAudioRef.current) {
+            context.meditationAudioRef.current.volume = 0.5;
+            context.meditationAudioRef.current.play();
+        }
     }
 
     return (
         <div className='relative mt-8 flex flex-col items-center justify-center'>
             <motion.div
-                className={`dark: z-0 h-[256px] w-[256px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500 md:h-[512px] md:w-[512px]`}
+                className={`dark: z-0 h-[256px] w-[256px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500 md:h-[384px] md:w-[384px]`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}

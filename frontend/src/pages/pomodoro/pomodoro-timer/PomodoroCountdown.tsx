@@ -12,7 +12,7 @@ import {
     POMODORO_LONG_BREAK_DURATION,
     POMODORO_SHORT_BREAK_DURATION,
 } from '@/utils/constants.ts';
-import TimerAlarmSound from '@/assets/vision-timer-alarm.mp3';
+import TimerAlarmSound from '@/assets/audio/vision-timer-alarm.mp3';
 import { PomodoroPhaseEnum } from '@/pages/pomodoro/pomodoro-phase.enum.ts';
 
 interface IProps {

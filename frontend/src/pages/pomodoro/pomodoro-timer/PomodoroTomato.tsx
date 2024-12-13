@@ -1,5 +1,5 @@
 import React from 'react';
-import TomatoIcon from '@/assets/tomato-icon.svg?react';
+import TomatoIcon from '@/assets/vectors/tomato-icon.svg?react';
 
 interface IProps {
     isFilled: boolean;

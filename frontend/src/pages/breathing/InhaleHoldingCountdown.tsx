@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React, {Dispatch, SetStateAction, useContext, useRef} from 'react';
 import Countdown, { CountdownRendererFn } from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { describeArc } from '@/utils/math.ts';
@@ -7,18 +7,19 @@ import {
     BREATHING_ROUNDS_AMOUNT,
 } from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
+import {BreathingContext} from "@/pages/breathing/breathing.context.ts";
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     round: number;
-    breatheOutAudioRef: React.MutableRefObject<any>;
 }
 
 const InhaleHoldingCountdown = ({
-    breatheOutAudioRef,
     setPhase,
     round,
 }: IProps) => {
+    const context = useContext(BreathingContext);
+
     const radius = 256; // Радіус кола
 
     const renderer: CountdownRendererFn = (props) => {
@@ -44,7 +45,7 @@ const InhaleHoldingCountdown = ({
                     </p>
                 </motion.div>
                 <svg
-                    className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 bg-blue-200 dark:border-sky-700 dark:bg-sky-700 md:h-[512px] md:w-[512px]'
+                    className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 bg-blue-200 dark:border-sky-700 dark:bg-sky-700 md:h-[384px] md:w-[384px]'
                     viewBox='0 0 512 512'>
                     {/* Сектор "Pacman" */}
                     <path
@@ -57,7 +58,7 @@ const InhaleHoldingCountdown = ({
     };
 
     const handleComplete = () => {
-        breatheOutAudioRef.current?.play();
+        context?.breatheOutAudioRef.current?.play();
 
         if (round === BREATHING_ROUNDS_AMOUNT) {
             setPhase(BreathingPhaseEnum.Finish);
