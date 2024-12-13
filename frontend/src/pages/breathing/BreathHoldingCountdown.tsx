@@ -29,14 +29,20 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
 
     useEffect(() => {
         // грати "клац" кожну секунду
-        context?.tickAudioRef.current?.play();
+        if (context?.tickAudioRef.current) {
+            context.tickAudioRef.current.volume = 0.5;
+            context.tickAudioRef.current.play();
+        }
 
         // за 10 секунд до кінця перестати "клацати" і почати "клацати" більш агресивно
-        let audioTickFastInterval: NodeJS.Timeout;
         const audioTickFastTimeout = setTimeout(
             () => {
                 context?.tickAudioRef.current?.pause();
-                context?.tickFastAudioRef.current?.play();
+
+                if (context?.tickFastAudioRef.current) {
+                    context.tickFastAudioRef.current.play();
+                    context.tickFastAudioRef.current.volume = 0.5;
+                }
             },
             BREATHING_BREATH_HOLD_BASE_TIME * 1000 * round - 10000
         );
@@ -47,11 +53,13 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
             if (context?.tickAudioRef.current) {
                 context.tickAudioRef.current.pause();
                 context.tickAudioRef.current.currentTime = 0;
+                context.tickAudioRef.current.volume = 1;
             }
 
             if (context?.tickFastAudioRef.current) {
                 context.tickFastAudioRef.current.pause();
                 context.tickFastAudioRef.current.currentTime = 0;
+                context.tickFastAudioRef.current.volume = 1;
             }
         };
     }, [context?.tickAudioRef, context?.tickFastAudioRef, round]);
