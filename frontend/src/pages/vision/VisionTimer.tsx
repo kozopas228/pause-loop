@@ -6,7 +6,7 @@ import {
     VISION_TIMER_REPEAT_INTERVAL_STOP_AFTER,
     VISION_TIMER_REST_DURATION,
 } from '@/utils/constants.ts';
-import TimerAlarmSound from '@/assets/vision-timer-alarm.mp3';
+import TimerAlarmSound from '@/assets/audio/vision-timer-alarm.mp3';
 import Countdown, {
     CountdownRenderProps,
     CountdownTimeDelta,

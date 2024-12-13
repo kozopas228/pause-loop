@@ -1,19 +1,28 @@
-import React, {Dispatch, MutableRefObject, ReactNode, SetStateAction, useState} from 'react';
+import React, {
+    Dispatch,
+    MutableRefObject,
+    ReactNode,
+    SetStateAction,
+    useContext,
+    useState,
+} from 'react';
 import Countdown, { CountdownRenderProps } from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { BREATHING_PREPARATION_TIME } from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
+import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
-    gongAudioRef: MutableRefObject<any>;
 }
 
-const PreparationCountdown = ({ setPhase, gongAudioRef }: IProps) => {
+const PreparationCountdown = ({ setPhase }: IProps) => {
+    const context = useContext(BreathingContext);
+
     const [startTime, setStartTime] = useState(Date.now());
 
     function handleOnComplete() {
-        gongAudioRef.current?.play();
+        context?.gongAudioRef.current?.play();
         setPhase(BreathingPhaseEnum.Breathing);
     }
 
@@ -21,7 +30,7 @@ const PreparationCountdown = ({ setPhase, gongAudioRef }: IProps) => {
         return (
             <div className='relative mt-8 flex flex-col items-center justify-center'>
                 <div
-                    className={`z-0 h-[256px] w-[256px] rounded-full bg-blue-200 dark:bg-sky-700 md:h-[512px] md:w-[512px]`}>
+                    className={`z-0 h-[256px] w-[256px] rounded-full bg-blue-200 dark:bg-sky-700 md:h-[384px] md:w-[384px]`}>
                     <motion.div
                         className='absolute left-[50%] top-[50%] flex translate-x-[-50%] translate-y-[-50%] flex-col items-center justify-center'
                         initial={{ opacity: 0 }}

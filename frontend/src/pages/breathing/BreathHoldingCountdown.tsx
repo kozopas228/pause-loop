@@ -1,6 +1,7 @@
 import React, {
     Dispatch,
     SetStateAction,
+    useContext,
     useEffect,
     useRef,
     useState,
@@ -13,47 +14,29 @@ import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { describeArc } from '@/utils/math.ts';
 import { BREATHING_BREATH_HOLD_BASE_TIME } from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
+import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     round: number;
-    breatheInAudioRef: React.MutableRefObject<any>;
-    tickAudioRef: React.MutableRefObject<any>;
-    tickFastAudioRef: React.MutableRefObject<any>;
-    alarmAudioRef: React.MutableRefObject<any>;
-    bellAudioRef: React.MutableRefObject<any>;
 }
 
-const BreathHoldingCountdown = ({
-    breatheInAudioRef,
-    setPhase,
-    round,
-    tickAudioRef,
-    tickFastAudioRef,
-    alarmAudioRef,
-    bellAudioRef,
-}: IProps) => {
+const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
+    const context = useContext(BreathingContext);
+
     const radius = 256; // Радіус кола
     const radiusMobile = 256 / 2; // Радіус кола
 
     useEffect(() => {
         // грати "клац" кожну секунду
-        setTimeout(() => {
-            tickAudioRef.current?.play();
-        }, 0);
-        const audioTickInterval = setInterval(() => {
-            tickAudioRef.current?.play();
-        }, 1000);
+        context?.tickAudioRef.current?.play();
 
         // за 10 секунд до кінця перестати "клацати" і почати "клацати" більш агресивно
         let audioTickFastInterval: NodeJS.Timeout;
         const audioTickFastTimeout = setTimeout(
             () => {
-                audioTickFastInterval = setInterval(() => {
-                    tickAudioRef.current?.play();
-                }, 10);
-
-                clearInterval(audioTickInterval);
+                context?.tickAudioRef.current?.pause();
+                context?.tickFastAudioRef.current?.play();
             },
             BREATHING_BREATH_HOLD_BASE_TIME * 1000 * round - 10000
         );
@@ -61,15 +44,17 @@ const BreathHoldingCountdown = ({
         return () => {
             clearTimeout(audioTickFastTimeout);
 
-            if (audioTickInterval) {
-                clearInterval(audioTickInterval);
+            if (context?.tickAudioRef.current) {
+                context.tickAudioRef.current.pause();
+                context.tickAudioRef.current.currentTime = 0;
             }
 
-            if (audioTickFastInterval) {
-                clearInterval(audioTickFastInterval);
+            if (context?.tickFastAudioRef.current) {
+                context.tickFastAudioRef.current.pause();
+                context.tickFastAudioRef.current.currentTime = 0;
             }
         };
-    }, [round, tickAudioRef, tickFastAudioRef]);
+    }, [context?.tickAudioRef, context?.tickFastAudioRef, round]);
 
     const renderer: CountdownRendererFn = (props) => {
         const progress =
@@ -89,12 +74,12 @@ const BreathHoldingCountdown = ({
                     <div className='mt-2 flex justify-center text-3xl font-extrabold text-sky-700 dark:text-sky-300 md:text-5xl'>
                         {props.formatted.minutes}:{props.formatted.seconds}
                     </div>
-                    <p className='mt-6 text-center text-sm font-bold text-sky-900 dark:text-sky-300 md:text-xl'>
+                    <p className='mt-6 text-center text-base text-sm font-bold text-sky-900 dark:text-sky-300'>
                         Remember, you can Breath In if you need to.
                     </p>
                 </div>
                 <svg
-                    className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 dark:border-sky-700 md:h-[512px] md:w-[512px]'
+                    className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 dark:border-sky-700 md:h-[384px] md:w-[384px]'
                     viewBox='0 0 512 512'>
                     {/* Сектор "Pacman" */}
                     <path
@@ -107,8 +92,8 @@ const BreathHoldingCountdown = ({
     };
 
     const handleComplete = () => {
-        bellAudioRef.current?.play();
-        breatheInAudioRef.current?.play();
+        context?.bellAudioRef.current?.play();
+        context?.breatheInAudioRef.current?.play();
         setPhase(BreathingPhaseEnum.InhaleHolding);
     };
 

@@ -17,7 +17,7 @@ const BreathingFinish = ({ setPhase, setRound }: IProps) => {
     return (
         <div className='relative mt-8 flex flex-col items-center justify-center'>
             <motion.div
-                className={`z-0 h-[256px] w-[256px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500 md:h-[512px] md:w-[512px]`}
+                className={`z-0 h-[256px] w-[256px] cursor-pointer rounded-full bg-blue-200 stroke-sky-800 text-sky-900 hover:stroke-sky-500 hover:text-sky-600 dark:bg-sky-700 dark:stroke-sky-400 dark:text-sky-300 hover:dark:stroke-sky-600 hover:dark:text-sky-500 md:h-[384px] md:w-[384px]`}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
