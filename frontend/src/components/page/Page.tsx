@@ -1,14 +1,18 @@
-import React, { ReactNode } from 'react';
+import React, {CSSProperties, ReactNode} from 'react';
 import Header from '@/components/header/Header.tsx';
 import { motion } from 'framer-motion';
 
 interface IProps {
     children: ReactNode;
+    className?: string;
+    style?: CSSProperties;
 }
 
-const Page = ({ children }: IProps) => {
+const Page = ({ children, className, style }: IProps) => {
     return (
-        <div className='flex min-h-[100svh] flex-col'>
+        <div
+            className={`flex min-h-[100svh] flex-col ${className}`}
+            style={style}>
             <Header />
             <motion.div
                 initial={{ opacity: 0 }}
