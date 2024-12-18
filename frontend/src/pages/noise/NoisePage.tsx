@@ -8,6 +8,7 @@ import BrownNoise from '@/assets/audio/brown-noise-fast.wav';
 // import BrownNoise from '@/assets/audio/brown-noise-fast.mp3';
 import { Slider } from '@/shadcn/components/ui/slider.tsx';
 import BrownNoiseGenerator from '@/pages/noise/BrownNoiseGenerator.tsx';
+import { Volume2 } from 'lucide-react';
 
 const NoisePage = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -37,7 +38,11 @@ const NoisePage = () => {
                 />
             )}
 
-            <div className='absolute left-1/2 top-[60%] w-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 md:w-1/4'>
+            <div className='absolute left-1/2 top-[60%] flex w-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 md:w-1/4'>
+                <Volume2
+                    size={64}
+                    className='mr-4 stroke-white'
+                />
                 <Slider
                     min={0}
                     max={20}
