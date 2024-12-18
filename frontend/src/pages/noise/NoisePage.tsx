@@ -29,16 +29,16 @@ const NoisePage = () => {
             {isPlaying ? (
                 <CustomPauseIcon
                     onClick={handlePlayPauseClick}
-                    className='absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 transform cursor-pointer opacity-90 hover:opacity-100'
+                    className='absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 scale-75 transform cursor-pointer opacity-90 hover:opacity-100 md:scale-100'
                 />
             ) : (
                 <CustomPlayIcon
                     onClick={handlePlayPauseClick}
-                    className='absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 transform cursor-pointer opacity-90 hover:opacity-100'
+                    className='absolute left-1/2 top-[45%] -translate-x-1/2 -translate-y-1/2 scale-75 transform cursor-pointer opacity-90 hover:opacity-100 md:scale-100'
                 />
             )}
 
-            <div className='absolute left-1/2 top-[60%] flex w-1/2 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 md:w-1/4'>
+            <div className='absolute left-1/2 top-[60%] flex w-3/4 -translate-x-1/2 -translate-y-1/2 opacity-50 hover:opacity-100 md:w-1/4'>
                 <Volume2
                     size={64}
                     className='mr-4 stroke-white'
