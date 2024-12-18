@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 interface IProps {
     isPlaying: boolean;
@@ -69,15 +69,38 @@ const BrownNoiseGenerator = ({ isPlaying, volume }: IProps) => {
         noiseSource.connect(biquadFilter);
         biquadFilter.connect(gainNodeRef.current);
 
+        // Початковий рівень гучності 0
+        gainNodeRef.current.gain.setValueAtTime(0, audioContext.currentTime);
+
+        // Плавне збільшення гучності до заданого рівня (volume) протягом 1 секунди
+        gainNodeRef.current.gain.linearRampToValueAtTime(
+            volume,
+            audioContext.currentTime + 1 // Перехід за 1 секунду
+        );
+
         noiseSource.start();
         noiseSourceRef.current = noiseSource;
     };
 
     const stopNoise = () => {
-        if (noiseSourceRef.current) {
-            noiseSourceRef.current.stop();
-            noiseSourceRef.current.disconnect();
-            noiseSourceRef.current = null;
+        if (noiseSourceRef.current && gainNodeRef.current) {
+            const audioContext = audioContextRef.current;
+            const gainNode = gainNodeRef.current;
+
+            // Плавне зменшення гучності до 0 за 1 секунду
+            gainNode.gain.linearRampToValueAtTime(
+                0,
+                audioContext!.currentTime + 1
+            );
+
+            // Зупинка джерела звуку після завершення зменшення гучності
+            setTimeout(() => {
+                if (noiseSourceRef.current) {
+                    noiseSourceRef.current.stop();
+                    noiseSourceRef.current.disconnect();
+                    noiseSourceRef.current = null;
+                }
+            }, 1000); // 1 секунда відповідає тривалості зменшення гучності
         }
     };
 
