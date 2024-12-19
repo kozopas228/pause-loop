@@ -31,7 +31,7 @@ const NoisePage = () => {
                 backgroundSize: 'cover',
                 backgroundBlendMode: 'overlay',
             }}>
-            <div className='mt-32 flex flex-col items-center md:mt-64'>
+            <div className='mt-32 flex flex-col items-center md:mt-40'>
                 {isPlaying ? (
                     <CustomPauseIcon
                         onClick={handlePlayPauseClick}
@@ -44,10 +44,9 @@ const NoisePage = () => {
                     />
                 )}
 
-                <div className='mt-2 flex w-3/4 opacity-50 hover:opacity-100 md:mt-6 md:w-1/4'>
+                <div className='mt-2 flex w-1/2 opacity-50 hover:opacity-100 md:mt-6 md:w-1/4'>
                     <Volume2
-                        size={64}
-                        className='mr-4 stroke-white'
+                        className='mr-4 stroke-white h-12 w-12 md:w-16 md:h-16'
                     />
                     <Slider
                         min={0}
