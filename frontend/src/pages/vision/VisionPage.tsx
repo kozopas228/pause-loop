@@ -42,7 +42,7 @@ const VisionPage = () => {
                     <h3 className='text-center text-lg font-bold text-emerald-900 dark:text-emerald-50'>
                         To reduce eye strain caused by prolonged screen time:
                     </h3>
-                    <div className='mx-auto mt-12 grid auto-cols-auto grid-cols-1 items-start justify-items-center gap-4 gap-y-20 md:mt-20 md:grid-cols-2 lg:w-3/4 lg:grid-cols-3 2xl:w-1/2'>
+                    <div className='mx-auto mt-12 grid auto-cols-auto grid-cols-1 items-start justify-items-center gap-4 gap-y-20 md:mt-20 md:grid-cols-2 lg:w-3/4 lg:grid-cols-3 2xl:w-[1024px]'>
                         <div className='flex h-auto w-64 flex-col items-center'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
                                 1
