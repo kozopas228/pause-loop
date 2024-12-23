@@ -1,11 +1,11 @@
 <svg width="140" height="140" viewBox="0 0 140 140" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g filter="url(#filter0_d_202_134)">
 <path d="M64.5833 25.8333H38.75V129.167H64.5833V25.8333Z" fill="black"/>
-<path d="M64.5833 25.8333H38.75V129.167H64.5833V25.8333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M64.5833 25.8333H38.75V129.167H64.5833V25.8333Z" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <g filter="url(#filter1_d_202_134)">
 <path d="M116.25 25.8333H90.4166V129.167H116.25V25.8333Z" fill="black"/>
-<path d="M116.25 25.8333H90.4166V129.167H116.25V25.8333Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M116.25 25.8333H90.4166V129.167H116.25V25.8333Z" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <defs>
 <filter id="filter0_d_202_134" x="20.45" y="7.53334" width="62.4334" height="139.933" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
