@@ -40,12 +40,12 @@ const NoisePage = () => {
                 {isPlaying ? (
                     <CustomPauseIcon
                         onClick={handlePlayPauseClick}
-                        className='scale-[30%] transform cursor-pointer dill-black opacity-80 hover:opacity-100  md:scale-100'
+                        className='scale-75 transform cursor-pointer fill-black opacity-80 hover:opacity-100 md:scale-100'
                     />
                 ) : (
                     <CustomPlayIcon
                         onClick={handlePlayPauseClick}
-                        className='scale-[30%] transform cursor-pointer fill-black opacity-80 hover:opacity-100  md:scale-100'
+                        className='scale-75 transform cursor-pointer fill-black opacity-80 hover:opacity-100 md:scale-100'
                     />
                 )}
 

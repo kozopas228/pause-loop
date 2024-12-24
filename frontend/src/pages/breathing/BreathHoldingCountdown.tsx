@@ -25,7 +25,6 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
     const context = useContext(BreathingContext);
 
     const radius = 256; // Радіус кола
-    const radiusMobile = 256 / 2; // Радіус кола
 
     useEffect(() => {
         // грати "клац" кожну секунду
