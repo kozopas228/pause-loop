@@ -42,7 +42,7 @@ const BreathingCircle = ({ setPhase }: IProps) => {
         }
 
         // зробити невелику паузу на останньому вдиху
-        if (step === BREATHING_BREATHS_AMOUNT) {
+        if (step === BREATHING_BREATHS_AMOUNT && isBreath) {
             clearInterval(breathingIntervalRef.current);
             clearInterval(stepsIntervalRef.current);
 
