@@ -1,6 +1,7 @@
 import React, {
     Dispatch,
-    SetStateAction, useContext,
+    SetStateAction,
+    useContext,
     useEffect,
     useRef,
     useState,
@@ -12,15 +13,13 @@ import {
 } from '@/utils/constants.ts';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { motion } from 'framer-motion';
-import {BreathingContext} from "@/pages/breathing/breathing.context.ts";
+import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
 }
 
-const BreathingCircle = ({
-    setPhase,
-}: IProps) => {
+const BreathingCircle = ({ setPhase }: IProps) => {
     const context = useContext(BreathingContext);
 
     const [isBreath, setIsBreath] = useState(false);
@@ -30,6 +29,18 @@ const BreathingCircle = ({
     const stepsIntervalRef = useRef<any>(null);
 
     useEffect(() => {
+        if (step > 0) {
+            if (isBreath) {
+                context?.breatheInAudioRef.current?.play();
+            } else {
+                context?.breatheOutAudioRef.current?.play();
+            }
+        }
+
+        if (BREATHING_BREATHS_AMOUNT - step === 1) {
+            context?.bellAudioRef.current?.play();
+        }
+
         // зробити невелику паузу на останньому вдиху
         if (step === BREATHING_BREATHS_AMOUNT) {
             clearInterval(breathingIntervalRef.current);
@@ -52,18 +63,6 @@ const BreathingCircle = ({
                     BREATHING_BREATH_DURATION * 1000 + 500
                 );
             });
-        }
-
-        if (step > 0) {
-            if (isBreath) {
-                context?.breatheInAudioRef.current?.play();
-            } else {
-                context?.breatheOutAudioRef.current?.play();
-            }
-        }
-
-        if (BREATHING_BREATHS_AMOUNT - step === 1) {
-            context?.bellAudioRef.current?.play();
         }
     }, [
         context?.bellAudioRef,

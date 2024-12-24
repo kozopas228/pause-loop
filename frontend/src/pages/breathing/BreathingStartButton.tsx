@@ -23,6 +23,18 @@ const BreathingStartButton = ({ setPhase }: IProps) => {
             context.meditationAudioRef.current.volume = 0.5;
             context.meditationAudioRef.current.play();
         }
+
+        // we need to load or play audio by some of user's interaction
+        // because iOS browsers don't allow to play audio on page load
+        // or without any interaction
+
+        context?.breatheInAudioRef.current?.load();
+        context?.breatheOutAudioRef.current?.load();
+        context?.tickAudioRef.current?.load();
+        context?.tickFastAudioRef.current?.load();
+        context?.gongAudioRef.current?.load();
+        context?.alarmAudioRef.current?.load();
+        context?.bellAudioRef.current?.load();
     }
 
     return (

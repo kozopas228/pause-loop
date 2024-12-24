@@ -1,4 +1,4 @@
-import React, {Dispatch, SetStateAction, useContext, useRef} from 'react';
+import React, { Dispatch, SetStateAction, useContext, useRef } from 'react';
 import Countdown, { CountdownRendererFn } from 'react-countdown';
 import { BreathingPhaseEnum } from '@/pages/breathing/breathing-phase.enum.ts';
 import { describeArc } from '@/utils/math.ts';
@@ -7,17 +7,14 @@ import {
     BREATHING_ROUNDS_AMOUNT,
 } from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
-import {BreathingContext} from "@/pages/breathing/breathing.context.ts";
+import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
     round: number;
 }
 
-const InhaleHoldingCountdown = ({
-    setPhase,
-    round,
-}: IProps) => {
+const InhaleHoldingCountdown = ({ setPhase, round }: IProps) => {
     const context = useContext(BreathingContext);
 
     const radius = 256; // Радіус кола
