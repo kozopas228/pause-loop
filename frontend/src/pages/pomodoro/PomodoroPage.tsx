@@ -39,7 +39,7 @@ const PomodoroPage = () => {
             </div>
             {isShowDescription && (
                 <div className='mb-12 mt-4'>
-                    <h3 className='text-center text-lg font-bold text-amber-900 dark:text-amber-50'>
+                    <h3 className='px-3 text-center text-lg font-bold text-amber-900 dark:text-amber-50'>
                         A simple way to increase productivity and focus.
                     </h3>
                     <div className='mx-auto mt-12 grid auto-cols-auto grid-cols-1 items-start justify-items-center gap-x-32 gap-y-20 md:mt-20 md:grid-cols-2 lg:w-3/4 lg:grid-cols-3 xl:grid-cols-4 2xl:w-[1024px]'>
@@ -50,7 +50,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold'>
                                 Work for 25 minutes with maximum focus
                             </p>
-                            <WorkingPomodoro className='mt-6 h-auto w-full md:mt-12' />
+                            <WorkingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
                         </div>
                         <div className='flex h-auto flex-col items-center'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
@@ -59,7 +59,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold'>
                                 Make a small break for 5 minutes
                             </p>
-                            <ChillingPomodoro className='mt-6 h-auto w-full md:mt-12' />
+                            <ChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
                         </div>
                         <div className='flex h-auto flex-col items-center'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
@@ -68,7 +68,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold'>
                                 Repeat 3 times
                             </p>
-                            <div className='mt-6 h-auto w-full md:mt-12'>
+                            <div className='mt-6 h-auto w-3/4 md:mt-12 md:w-full'>
                                 <div className='flex w-full justify-between'>
                                     <WorkingPomodoro className='mr-6 h-auto w-full' />
                                     <ChillingPomodoro className='h-auto w-full' />
@@ -78,7 +78,7 @@ const PomodoroPage = () => {
                                     <ChillingPomodoro className='h-auto w-full' />
                                 </div>
                                 <div className='mt-2 flex w-full justify-center'>
-                                    <WorkingPomodoro className='w-1/2 h-auto' />
+                                    <WorkingPomodoro className='h-auto w-1/2' />
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold'>
                                 Make a long break for 30 minutes
                             </p>
-                            <RealChillingPomodoro className='mt-6 h-auto w-full md:mt-12' />
+                            <RealChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
                         </div>
                     </div>
                 </div>

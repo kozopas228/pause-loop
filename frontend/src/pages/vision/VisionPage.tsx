@@ -39,7 +39,7 @@ const VisionPage = () => {
             </div>
             {isShowDescription && (
                 <div className='mb-12 mt-4'>
-                    <h3 className='text-center text-lg font-bold text-emerald-900 dark:text-emerald-50'>
+                    <h3 className='px-3 text-center text-lg font-bold text-emerald-900 dark:text-emerald-50'>
                         To reduce eye strain caused by prolonged screen time:
                     </h3>
                     <div className='mx-auto mt-12 grid auto-cols-auto grid-cols-1 items-start justify-items-center gap-4 gap-y-20 md:mt-20 md:grid-cols-2 lg:w-3/4 lg:grid-cols-3 2xl:w-[1024px]'>
