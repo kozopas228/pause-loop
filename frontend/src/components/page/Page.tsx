@@ -6,14 +6,15 @@ interface IProps {
     children: ReactNode;
     className?: string;
     style?: CSSProperties;
+    isBlurredHeader?: boolean;
 }
 
-const Page = ({ children, className, style }: IProps) => {
+const Page = ({ children, className, style, isBlurredHeader = true }: IProps) => {
     return (
         <div
             className={`flex min-h-[100svh] flex-col ${className}`}
             style={style}>
-            <Header />
+            <Header isBlurred={isBlurredHeader} />
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
