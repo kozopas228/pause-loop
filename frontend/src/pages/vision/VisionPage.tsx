@@ -39,33 +39,33 @@ const VisionPage = () => {
             </div>
             {isShowDescription && (
                 <div className='mb-12 mt-4'>
-                    <h3 className='px-3 text-center text-lg font-bold text-emerald-900 dark:text-emerald-50'>
+                    <h3 className='px-3 text-center text-lg font-bold text-emerald-700 dark:text-emerald-50'>
                         To reduce eye strain caused by prolonged screen time:
                     </h3>
                     <div className='mx-auto mt-12 grid auto-cols-auto grid-cols-1 items-start justify-items-center gap-4 gap-y-20 md:mt-20 md:grid-cols-2 lg:w-3/4 lg:grid-cols-3 2xl:w-[1024px]'>
                         <div className='flex h-auto w-64 flex-col items-center'>
-                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
+                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-emerald-950 text-lg font-bold text-emerald-50 dark:bg-emerald-50 dark:text-emerald-950'>
                                 1
                             </div>
-                            <p className='mt-6 text-center font-semibold'>
+                            <p className='mt-6 text-center font-semibold text-emerald-950 dark:text-emerald-50'>
                                 Work for 20 minutes
                             </p>
                             <VisionWorkingImage className='mt-6 h-auto w-full md:mt-12' />
                         </div>
                         <div className='flex h-auto w-64 flex-col items-center'>
-                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
+                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-emerald-950 text-lg font-bold text-emerald-50 dark:bg-emerald-50 dark:text-emerald-950'>
                                 2
                             </div>
-                            <p className='mt-6 text-center font-semibold'>
+                            <p className='mt-6 text-center font-semibold text-emerald-950 dark:text-emerald-50'>
                                 Look at something 20 feet away for 20 seconds
                             </p>
                             <VisionLookAway className='mt-6 h-auto w-full md:mt-12' />
                         </div>
                         <div className='flex h-auto w-64 flex-col items-center'>
-                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-black text-lg font-bold text-white dark:bg-white dark:text-black'>
+                            <div className='flex h-10 w-10 items-center justify-center rounded-full bg-emerald-950 text-lg font-bold text-emerald-50 dark:bg-emerald-50 dark:text-emerald-950'>
                                 3
                             </div>
-                            <p className='mt-6 text-center font-semibold'>
+                            <p className='mt-6 text-center font-semibold text-emerald-950 dark:text-emerald-50'>
                                 Repeat
                             </p>
                             <RotateCcw className='mt-6 h-auto w-32 stroke-emerald-800 stroke-2 dark:stroke-emerald-50 md:mt-12' />
