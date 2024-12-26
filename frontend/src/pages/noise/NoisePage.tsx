@@ -30,6 +30,7 @@ const NoisePage = () => {
 
     return (
         <Page
+            isBlurredHeader={false}
             style={{
                 backgroundImage: `${theme.resolvedTheme === 'light' ? `url(${BrownNoiseBackgroundImageLight})` : `url(${BrownNoiseBackgroundImage}), radial-gradient(circle, transparent 60%, rgba(0, 0, 0, 0.5) 100%)`} `,
                 backgroundPosition: 'center center',

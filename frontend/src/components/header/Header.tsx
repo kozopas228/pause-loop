@@ -10,32 +10,45 @@ import {
     NavigationMenuList,
     NavigationMenuLink,
 } from '@/shadcn/components/ui/navigation-menu';
-import { NavLink } from 'react-router-dom';
-import { Menu } from 'lucide-react';
-import logo from '/logo.svg';
+import { NavLink, useLocation } from 'react-router-dom';
+import { Home, Menu } from 'lucide-react';
+import Logo from '@/assets/vectors/logo.svg?react';
 import React from 'react';
 import { ModeToggle } from '@/shadcn/components/mode-toggle.tsx';
 
-export default function Header() {
+interface IProps {
+    isBlurred: boolean;
+}
+
+export default function Header({ isBlurred }: IProps) {
+    const location = useLocation();
+
+    const pageTitles = new Map<string, string>([
+        ['/', 'Pause Loop'],
+        ['/vision', '20/20/20 Vision Timer'],
+        ['/pomodoro', 'Pomodoro Timer'],
+        ['/noise', 'Brown Noise'],
+        ['/breathing', 'Breathing'],
+    ]);
+
+    const currentTitle = pageTitles.get(location.pathname);
+
     return (
-        <header className='sticky top-0 z-10 w-full shrink-0'>
-            <div className='container mx-auto flex h-20 shrink-0 items-center justify-between px-4 md:px-6'>
+        <header className={`sticky top-0 z-10 w-full shrink-0`}>
+            <div
+                className={`container mx-auto flex h-20 shrink-0 items-center justify-between px-4 duration-150 hover:opacity-100 md:px-6 lg:opacity-15 ${isBlurred ? 'backdrop-blur-sm' : ''}`}>
                 <Sheet>
                     <SheetTrigger asChild>
                         <Button
                             variant='outline'
                             size='icon'
-                            className='lg:hidden'>
+                            className='border-black bg-transparent bg-white bg-opacity-25 dark:border-white lg:hidden'>
                             <Menu className='h-6 w-6' />
                         </Button>
                     </SheetTrigger>
                     <SheetContent side='left'>
                         <NavLink to='/'>
-                            <img
-                                src={logo}
-                                className='h-6 w-6'
-                                alt='logo'
-                            />
+                            <Logo className='h-6 w-6 fill-black stroke-black dark:fill-white dark:stroke-white' />
                             <span className='sr-only'>ShadCN</span>
                         </NavLink>
                         <div className='grid gap-2 py-6'>
@@ -73,36 +86,38 @@ export default function Header() {
                 <NavLink
                     to='/'
                     className='mr-6 hidden lg:flex'>
-                    <img
-                        src={logo}
-                        className='h-6 w-6'
-                        alt='logo'
-                    />
+                    <Button
+                        variant='outline'
+                        size='icon'
+                        className='border-black bg-transparent bg-white bg-opacity-25 dark:border-white'>
+                        <Home className='h-6 w-6' />
+                    </Button>
                 </NavLink>
-                <NavigationMenu className='hidden rounded-lg border border-gray-500 bg-white bg-opacity-50 lg:flex'>
+                <NavigationMenu className='hidden lg:flex'>
                     <NavigationMenuList>
                         <NavigationMenuLink asChild>
                             <NavLink to='/vision'>
-                                <Button variant={'ghost'}>Vision Timer</Button>
+                                <Button variant={'link'}>Vision Timer</Button>
                             </NavLink>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
                             <NavLink to='/pomodoro'>
-                                <Button variant={'ghost'}>Pomodoro</Button>
+                                <Button variant={'link'}>Pomodoro</Button>
                             </NavLink>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
                             <NavLink to='/noise'>
-                                <Button variant={'ghost'}>Brown Noise</Button>
+                                <Button variant={'link'}>Brown Noise</Button>
                             </NavLink>
                         </NavigationMenuLink>
                         <NavigationMenuLink asChild>
                             <NavLink to='/breathing'>
-                                <Button variant={'ghost'}>Breathing</Button>
+                                <Button variant={'link'}>Breathing</Button>
                             </NavLink>
                         </NavigationMenuLink>
                     </NavigationMenuList>
                 </NavigationMenu>
+                <div className='opacity-50 lg:hidden'>{currentTitle}</div>
                 <ModeToggle />
             </div>
         </header>
