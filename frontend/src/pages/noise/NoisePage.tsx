@@ -84,7 +84,7 @@ const NoisePage = () => {
                         </p>
                     </div>
                     {isShowDescription && (
-                        <div className='mt-4 flex justify-center text-center'>
+                        <div className='mb-12 mt-4 flex justify-center text-center'>
                             <p className='text-orange-950 dark:text-orange-50'>
                                 Brown noise is a type of sound that has low
                                 frequencies and a deep, rumbling quality. It
