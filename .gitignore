@@ -21,3 +21,5 @@ dist-ssr
 
 
 architecture_template.drawio
+
+/frontend/src/pages/home/HomePage.tsx
