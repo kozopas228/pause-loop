@@ -14,10 +14,10 @@ const HomePage = () => {
 
     return (
         <Page showNav={false}>
-            <div className='mx-auto mb-12 mt-6 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10'>
+            <div className='mx-auto mt-6 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10'>
                 <Link
                     to='/vision'
-                    className='rounded-sm border-2 border-emerald-100 bg-emerald-50 duration-150 hover:shadow-lg dark:border-emerald-800 dark:bg-emerald-950'>
+                    className='rounded-sm border-2 border-emerald-100 bg-emerald-50 shadow duration-150 hover:shadow-lg dark:border-emerald-800 dark:bg-emerald-950 dark:shadow-emerald-900'>
                     <div className='relative mx-auto h-[130px] w-[130px] pt-2'>
                         <svg
                             className='h-full w-full -rotate-90 transform'
@@ -55,7 +55,7 @@ const HomePage = () => {
 
                 <Link
                     to='/pomodoro'
-                    className='rounded-sm border-2 border-amber-100 bg-amber-50 duration-150 hover:shadow-lg dark:border-amber-800 dark:bg-amber-950'>
+                    className='rounded-sm border-2 border-amber-100 bg-amber-50 shadow duration-150 hover:shadow-lg dark:border-amber-800 dark:bg-amber-950 dark:shadow-amber-900'>
                     <div className='mx-auto flex h-[130px] w-[130px] flex-col items-center justify-center'>
                         <div className='text-4xl font-extrabold text-amber-700 dark:text-amber-400'>
                             25:00
@@ -79,7 +79,7 @@ const HomePage = () => {
 
                 <Link
                     to='/noise'
-                    className='rounded-sm border-2 border-orange-100 duration-150 hover:shadow-lg dark:border-orange-800'
+                    className='rounded-sm border-2 border-orange-100 shadow duration-150 hover:shadow-lg dark:border-orange-800 dark:shadow-orange-900'
                     style={{
                         backgroundImage: `${theme.resolvedTheme === 'light' ? `url(${BrownNoiseBackgroundImageLight})` : `url(${BrownNoiseBackgroundImage})`} `,
                         backgroundPosition: 'center center',
@@ -99,7 +99,7 @@ const HomePage = () => {
 
                 <Link
                     to='/breathing'
-                    className='rounded-sm border-2 border-sky-100 bg-sky-50 duration-150 hover:shadow-lg dark:border-sky-800 dark:bg-sky-950'>
+                    className='rounded-sm border-2 border-sky-100 bg-sky-50 shadow duration-150 hover:shadow-lg dark:border-sky-800 dark:bg-sky-950 dark:shadow-sky-900'>
                     <div className='relative mx-auto h-[130px] w-[130px] pt-2'>
                         <div
                             className={`z-10 h-[128px] w-[128px] rounded-full bg-blue-300 transition-transform dark:bg-sky-700`}></div>
