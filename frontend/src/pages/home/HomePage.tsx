@@ -14,7 +14,7 @@ const HomePage = () => {
 
     return (
         <Page showNav={false}>
-            <div className='mx-auto mt-12 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10'>
+            <div className='mx-auto mt-12 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10 mb-12'>
                 <Link
                     to='/vision'
                     className='rounded-sm border-2 border-emerald-100 bg-emerald-50 duration-150 hover:shadow-lg dark:border-emerald-800 dark:bg-emerald-950'>
@@ -46,7 +46,7 @@ const HomePage = () => {
                         <div className='text-lg font-bold text-emerald-950 dark:text-emerald-50'>
                             Eye saver 20/20/20
                         </div>
-                        <div className='mt-1 text-emerald-950 opacity-70 dark:text-emerald-50'>
+                        <div className='text-sm mt-1 text-emerald-950 opacity-70 dark:text-emerald-50'>
                             20 minutes of work 20 seconds of looking at
                             something 20 feet far.
                         </div>
@@ -71,7 +71,7 @@ const HomePage = () => {
                         <div className='text-lg font-bold text-amber-950 dark:text-amber-50'>
                             Pomodoro Timer
                         </div>
-                        <div className='mt-1 text-amber-950 opacity-70 dark:text-amber-50'>
+                        <div className='text-sm mt-1 text-amber-950 opacity-70 dark:text-amber-50'>
                             Improve productivity by working in intervals.
                         </div>
                     </div>
@@ -91,7 +91,7 @@ const HomePage = () => {
                         <div className='text-lg font-bold text-orange-950 dark:text-orange-50'>
                             Brown Noise
                         </div>
-                        <div className='mt-1 text-orange-950 opacity-70 dark:text-orange-50'>
+                        <div className='text-sm mt-1 text-orange-950 opacity-70 dark:text-orange-50'>
                             Deep sound, ideal for relaxation or focus.
                         </div>
                     </div>
@@ -112,7 +112,7 @@ const HomePage = () => {
                         <div className='text-lg font-bold text-sky-950 dark:text-sky-50'>
                             Breathing
                         </div>
-                        <div className='mt-1 text-sky-950 opacity-70 dark:text-sky-50'>
+                        <div className='text-sm mt-1 text-sky-950 opacity-70 dark:text-sky-50'>
                             Boost energy, reduce stress, and improve focus.
                         </div>
                     </div>
