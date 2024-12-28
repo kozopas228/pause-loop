@@ -7,14 +7,15 @@ interface IProps {
     className?: string;
     style?: CSSProperties;
     isBlurredHeader?: boolean;
+    showNav?: boolean;
 }
 
-const Page = ({ children, className, style, isBlurredHeader = true }: IProps) => {
+const Page = ({ children, className, style, isBlurredHeader = true, showNav = true }: IProps) => {
     return (
         <div
             className={`flex min-h-[100svh] flex-col ${className}`}
             style={style}>
-            <Header isBlurred={isBlurredHeader} />
+            <Header isBlurred={isBlurredHeader} showNav={showNav} />
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
