@@ -35,7 +35,7 @@ export default function Header({ isBlurred, showNav }: IProps) {
     const currentTitle = pageTitles.get(location.pathname);
 
     return (
-        <header className={`sticky top-0 z-10 w-full shrink-0`}>
+        <header className={`sticky top-0 z-50 w-full shrink-0`}>
             <div
                 className={`container mx-auto flex h-20 shrink-0 items-center ${showNav ? 'justify-between' : 'justify-center'} px-4 duration-150 hover:opacity-100 md:px-6 lg:opacity-15 ${isBlurred ? 'backdrop-blur-sm' : ''}`}>
                 {showNav && (
