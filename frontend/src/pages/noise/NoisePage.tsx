@@ -26,7 +26,6 @@ const NoisePage = () => {
     };
 
     const theme = useTheme();
-    console.log(theme);
 
     return (
         <Page
