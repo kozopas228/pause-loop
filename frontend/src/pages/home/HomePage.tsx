@@ -14,7 +14,7 @@ const HomePage = () => {
 
     return (
         <Page showNav={false}>
-            <div className='mx-auto mt-12 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10 mb-12'>
+            <div className='mx-auto mb-12 mt-6 grid w-11/12 grid-cols-2 gap-6 md:w-[612px] lg:mt-20 lg:w-[956px] lg:grid-cols-4 lg:gap-10'>
                 <Link
                     to='/vision'
                     className='rounded-sm border-2 border-emerald-100 bg-emerald-50 duration-150 hover:shadow-lg dark:border-emerald-800 dark:bg-emerald-950'>
@@ -43,10 +43,10 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className='mt-2 p-3'>
-                        <div className='text-lg font-bold text-emerald-950 dark:text-emerald-50'>
+                        <div className='text-center text-lg font-bold text-emerald-950 dark:text-emerald-50 md:text-start'>
                             Eye saver 20/20/20
                         </div>
-                        <div className='text-sm mt-1 text-emerald-950 opacity-70 dark:text-emerald-50'>
+                        <div className='mt-1 hidden text-emerald-950 opacity-70 dark:text-emerald-50 md:block md:text-sm'>
                             20 minutes of work 20 seconds of looking at
                             something 20 feet far.
                         </div>
@@ -68,10 +68,10 @@ const HomePage = () => {
                         </div>
                     </div>
                     <div className='mt-2 p-3'>
-                        <div className='text-lg font-bold text-amber-950 dark:text-amber-50'>
+                        <div className='text-center text-lg font-bold text-amber-950 dark:text-amber-50 md:text-start'>
                             Pomodoro Timer
                         </div>
-                        <div className='text-sm mt-1 text-amber-950 opacity-70 dark:text-amber-50'>
+                        <div className='mt-1 hidden text-amber-950 opacity-70 dark:text-amber-50 md:block md:text-sm'>
                             Improve productivity by working in intervals.
                         </div>
                     </div>
@@ -88,10 +88,10 @@ const HomePage = () => {
                     }}>
                     <div className='relative mx-auto h-[130px] w-[130px] pt-2'></div>
                     <div className='mt-2 p-3'>
-                        <div className='text-lg font-bold text-orange-950 dark:text-orange-50'>
+                        <div className='text-center text-lg font-bold text-orange-950 dark:text-orange-50 md:text-start'>
                             Brown Noise
                         </div>
-                        <div className='text-sm mt-1 text-orange-950 opacity-70 dark:text-orange-50'>
+                        <div className='mt-1 hidden text-orange-950 opacity-70 dark:text-orange-50 md:block md:text-sm'>
                             Deep sound, ideal for relaxation or focus.
                         </div>
                     </div>
@@ -109,10 +109,10 @@ const HomePage = () => {
                             className={`absolute top-2 z-20 h-[128px] w-[128px] scale-50 rounded-full border-[64px] border-blue-200 bg-transparent`}></div>
                     </div>
                     <div className='mt-2 p-3'>
-                        <div className='text-lg font-bold text-sky-950 dark:text-sky-50'>
+                        <div className='text-center text-lg font-bold text-sky-950 dark:text-sky-50 md:text-start'>
                             Breathing
                         </div>
-                        <div className='text-sm mt-1 text-sky-950 opacity-70 dark:text-sky-50'>
+                        <div className='mt-1 hidden text-sky-950 opacity-70 dark:text-sky-50 md:block md:text-sm'>
                             Boost energy, reduce stress, and improve focus.
                         </div>
                     </div>
