@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Page from '@/components/page/Page.tsx';
 import BodyBackground from '@/components/body-background/BodyBackground.tsx';
 import BrownNoiseBackgroundImage from '@/assets/images/brown-noise-background.jpg';
 import BrownNoiseBackgroundImageLight from '@/assets/images/brown-noise-background-light.jpg';
 import CustomPlayIcon from '@/assets/vectors/custom-play.svg?react';
 import CustomPauseIcon from '@/assets/vectors/custom-pause.svg?react';
-import BrownNoise from '@/assets/audio/brown-noise-fast.wav';
-// import BrownNoise from '@/assets/audio/brown-noise-fast.mp3';
 import { Slider } from '@/shadcn/components/ui/slider.tsx';
 import BrownNoiseGenerator from '@/pages/noise/BrownNoiseGenerator.tsx';
 import { ChevronDown, ChevronUp, Volume2 } from 'lucide-react';
