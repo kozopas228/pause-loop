@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import {Armchair, ChevronDown, ChevronUp, RotateCcw, Timer, Wind} from 'lucide-react';
-import WorkingPomodoro from '@/assets/vectors/working-pomodoro.svg?react';
-import RelaxingAtHome from '@/assets/vectors/relaxing-at-home.svg?react';
+import {
+    Armchair,
+    ChevronDown,
+    ChevronUp,
+    RotateCcw,
+    Timer,
+    Wind,
+} from 'lucide-react';
 import BreatheIn from '@/assets/vectors/breathe-in.svg?react';
 
 const BreathingDescription = () => {
@@ -61,7 +66,6 @@ const BreathingDescription = () => {
                                 Hold your breath on the exhale
                             </p>
                             <Timer className='mt-6 h-auto w-1/3 stroke-sky-800 stroke-2 dark:stroke-sky-50 md:mt-12 lg:w-3/4 xl:w-32' />
-
                         </div>
                         <div className='flex h-auto w-3/4 flex-col items-center md:w-full'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-sky-950 text-lg font-bold text-sky-50 dark:bg-sky-50 dark:text-sky-950'>
@@ -70,7 +74,7 @@ const BreathingDescription = () => {
                             <p className='mt-6 text-center font-semibold text-sky-950 dark:text-sky-50'>
                                 One breath for 15 seconds
                             </p>
-                            <BreatheIn className='mt-6 stroke-[4px] stroke-sky-800 fill-sky-800 dark:stroke-sky-50 dark:fill-sky-50 w-3/4 md:mt-12 lg:w-full' />
+                            <BreatheIn className='mt-6 w-3/4 fill-sky-800 stroke-sky-800 stroke-[4px] dark:fill-sky-50 dark:stroke-sky-50 md:mt-12 lg:w-full' />
                         </div>
 
                         <div className='flex h-auto w-3/4 flex-col items-center md:w-full'>
@@ -89,7 +93,7 @@ const BreathingDescription = () => {
                         <a
                             href='https://en.wikipedia.org/wiki/Wim_Hof'
                             target='_blank'
-                            className='underline text-blue-600 dark:text-blue-300'>
+                            className='text-blue-600 underline dark:text-blue-300'>
                             Wim Hof
                         </a>
                         , also known as "The Iceman," to increase energy, reduce

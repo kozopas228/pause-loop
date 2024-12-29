@@ -12,7 +12,6 @@ import { BREATHING_PREPARATION_TIME } from '@/utils/constants.ts';
 import { motion } from 'framer-motion';
 import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 
-
 interface IProps {
     setPhase: Dispatch<SetStateAction<BreathingPhaseEnum>>;
 }

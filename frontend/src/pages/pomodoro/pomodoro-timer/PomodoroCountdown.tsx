@@ -91,13 +91,13 @@ const PomodoroCountdown = ({
                                 width={30}
                                 height={30}
                                 onClick={handleStart}
-                                className='cursor-pointer stroke-amber-900 dark:stroke-amber-500 opacity-15 hover:opacity-100 dark:stroke-amber-50'
+                                className='cursor-pointer stroke-amber-900 opacity-15 hover:opacity-100 dark:stroke-amber-50 dark:stroke-amber-500'
                             />
                             <Square
                                 width={30}
                                 height={30}
                                 onClick={handleStop}
-                                className='cursor-pointer stroke-amber-900 dark:stroke-amber-500 opacity-15 hover:opacity-100 dark:stroke-amber-50'
+                                className='cursor-pointer stroke-amber-900 opacity-15 hover:opacity-100 dark:stroke-amber-50 dark:stroke-amber-500'
                             />
                         </>
                     ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PomodoroTimer from '@/pages/pomodoro/pomodoro-timer/PomodoroTimer.tsx';
-import { ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import BodyBackground from '@/components/body-background/BodyBackground.tsx';
 import Page from '@/components/page/Page.tsx';
 import WorkingPomodoro from '@/assets/vectors/working-pomodoro.svg?react';
@@ -50,7 +50,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold text-amber-950 dark:text-amber-50'>
                                 Work for 25 minutes with maximum focus
                             </p>
-                            <WorkingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
+                            <WorkingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full' />
                         </div>
                         <div className='flex h-auto flex-col items-center'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-amber-950 text-lg font-bold text-amber-50 dark:bg-amber-50 dark:text-amber-950'>
@@ -59,7 +59,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold text-amber-950 dark:text-amber-50'>
                                 Make a small break for 5 minutes
                             </p>
-                            <ChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
+                            <ChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full' />
                         </div>
                         <div className='flex h-auto flex-col items-center'>
                             <div className='flex h-10 w-10 items-center justify-center rounded-full bg-amber-950 text-lg font-bold text-amber-50 dark:bg-amber-50 dark:text-amber-950'>
@@ -89,7 +89,7 @@ const PomodoroPage = () => {
                             <p className='mt-6 text-center font-semibold text-amber-950 dark:text-amber-50'>
                                 Make a long break for 30 minutes
                             </p>
-                            <RealChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full md:mt-12' />
+                            <RealChillingPomodoro className='mt-6 h-auto w-3/4 md:mt-12 md:w-full' />
                         </div>
                     </div>
                 </div>
