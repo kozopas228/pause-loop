@@ -15,15 +15,12 @@ import TickSound from '@/assets/audio/ticking.mp3';
 import BellSound from '@/assets/audio/bell.mp3';
 import TickFastSound from '@/assets/audio/ticking-fast.mp3';
 import AlarmSound from '@/assets/audio/alarm-clock.mp3';
-// import GongSound from '@/assets/audio/gong.mp3';
 import GongSound from '@/assets/audio/singind-bowl.mp3';
 import MeditationSound from '@/assets/audio/meditation.mp3';
 import { BreathingContext } from '@/pages/breathing/breathing.context.ts';
 import BreathingDescription from '@/pages/breathing/BreathingDescription.tsx';
 
 const BreathingPage = () => {
-    const context = useContext(BreathingContext);
-
     const [phase, setPhase] = useState(BreathingPhaseEnum.NotStarted);
     const [round, setRound] = useState(1);
 
