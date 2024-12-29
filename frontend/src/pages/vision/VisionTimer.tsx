@@ -1,4 +1,4 @@
-import React, {useState, useRef, ReactNode} from 'react';
+import React, { useState, useRef, ReactNode } from 'react';
 import { Pause, Play, Square } from 'lucide-react';
 import {
     VISION_TIMER_DURATION,
