@@ -29,7 +29,7 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
     useEffect(() => {
         // грати "клац" кожну секунду
         if (context?.tickAudioRef.current) {
-            context.tickAudioRef.current.volume = 0.5;
+            context.tickAudioRef.current.volume = 0.2;
             context.tickAudioRef.current.play();
         }
 
@@ -40,7 +40,7 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
 
                 if (context?.tickFastAudioRef.current) {
                     context.tickFastAudioRef.current.play();
-                    context.tickFastAudioRef.current.volume = 0.5;
+                    context.tickFastAudioRef.current.volume = 0.2;
                 }
             },
             BREATHING_BREATH_HOLD_BASE_TIME * 1000 * round - 10000
