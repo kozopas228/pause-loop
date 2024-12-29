@@ -12,13 +12,12 @@ const BrownNoiseGenerator = ({ isPlaying, volume }: IProps) => {
     const noiseBufferRef = useRef<AudioBuffer | null>(null);
     const noiseSourceRef = useRef<AudioBufferSourceNode | null>(null);
 
-    // Генерація коричневого шуму
     const generateBrownNoiseBuffer = useCallback(() => {
         const audioContext = new window.AudioContext();
         audioContextRef.current = audioContext;
 
-        // Створення буфера для коричневого шуму
-        const bufferSize = audioContext.sampleRate * 5; // 5 секунд шуму
+        // Creating a buffer for brown noise
+        const bufferSize = audioContext.sampleRate * 5; // 5 seconds of noise
         const buffer = audioContext.createBuffer(
             1,
             bufferSize,
@@ -28,20 +27,20 @@ const BrownNoiseGenerator = ({ isPlaying, volume }: IProps) => {
         let lastOut = 0.0;
 
         for (let i = 0; i < bufferSize; i++) {
-            const white = Math.random() * 2 - 1; // Білий шум
+            const white = Math.random() * 2 - 1; // White noise
             data[i] = (lastOut + 0.002 * white) / 1.002;
             lastOut = data[i];
-            data[i] = Math.max(-1, Math.min(1, data[i])); // Обмеження значень у межах [-1.0, 1.0]
+            data[i] = Math.max(-1, Math.min(1, data[i])); // Limit values to within [-1.0, 1.0]
         }
 
         noiseBufferRef.current = buffer;
 
-        // Створення GainNode для регулювання гучності
+        // Creating a GainNode to adjust volume
         gainNodeRef.current = audioContext.createGain();
         gainNodeRef.current.gain.setValueAtTime(
             volume,
             audioContext.currentTime
-        ); // Початкова гучність
+        );
         gainNodeRef.current.connect(audioContext.destination);
     }, []);
 
@@ -59,23 +58,23 @@ const BrownNoiseGenerator = ({ isPlaying, volume }: IProps) => {
         noiseSource.buffer = noiseBufferRef.current;
         noiseSource.loop = true;
 
-        // Фільтр низьких частот
+        // Low pass filter
         const biquadFilter = audioContext.createBiquadFilter();
         biquadFilter.type = 'lowpass';
         biquadFilter.frequency.setValueAtTime(265, audioContext.currentTime);
         biquadFilter.Q.setValueAtTime(0.8, audioContext.currentTime);
 
-        // З'єднання вузлів
+        // Connecting nodes
         noiseSource.connect(biquadFilter);
         biquadFilter.connect(gainNodeRef.current);
 
-        // Початковий рівень гучності 0
+        // Initial volume level 0
         gainNodeRef.current.gain.setValueAtTime(0, audioContext.currentTime);
 
-        // Плавне збільшення гучності до заданого рівня (volume) протягом 1 секунди
+        // Smoothly increase the volume to the specified level (volume) within 1 second
         gainNodeRef.current.gain.linearRampToValueAtTime(
             volume,
-            audioContext.currentTime + 1 // Перехід за 1 секунду
+            audioContext.currentTime + 1
         );
 
         noiseSource.start();
@@ -87,20 +86,20 @@ const BrownNoiseGenerator = ({ isPlaying, volume }: IProps) => {
             const audioContext = audioContextRef.current;
             const gainNode = gainNodeRef.current;
 
-            // Плавне зменшення гучності до 0 за 1 секунду
+            // Smoothly decrease the volume to 0 in 1 second
             gainNode.gain.linearRampToValueAtTime(
                 0,
                 audioContext!.currentTime + 1
             );
 
-            // Зупинка джерела звуку після завершення зменшення гучності
+            // Stop the sound source after the volume reduction is complete
             setTimeout(() => {
                 if (noiseSourceRef.current) {
                     noiseSourceRef.current.stop();
                     noiseSourceRef.current.disconnect();
                     noiseSourceRef.current = null;
                 }
-            }, 1000); // 1 секунда відповідає тривалості зменшення гучності
+            }, 1000);
         }
     };
 

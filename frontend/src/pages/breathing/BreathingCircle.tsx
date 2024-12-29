@@ -41,7 +41,7 @@ const BreathingCircle = ({ setPhase }: IProps) => {
             context?.bellAudioRef.current?.play();
         }
 
-        // зробити невелику паузу на останньому вдиху
+        // take a short pause on one's last breath
         if (step === BREATHING_BREATHS_AMOUNT && isBreath) {
             clearInterval(breathingIntervalRef.current);
             clearInterval(stepsIntervalRef.current);
@@ -83,14 +83,14 @@ const BreathingCircle = ({ setPhase }: IProps) => {
             () => {
                 setIsBreath((prev) => !prev);
             },
-            BREATHING_BREATH_DURATION * 1000 + 50 // додаткові мілісекунди, щоб була невелика пауза між вдохом і видохом
+            BREATHING_BREATH_DURATION * 1000 + 50 // extra milliseconds to allow for a slight pause between inhalation and exhalation
         );
 
         stepsIntervalRef.current = setInterval(
             () => {
                 setStep((prev) => prev + 1);
             },
-            BREATHING_BREATH_DURATION * 2 * 1000 + 100 // додаткові мілісекунди, щоб була невелика пауза між вдохом і видохом
+            BREATHING_BREATH_DURATION * 2 * 1000 + 100 // extra milliseconds to allow for a slight pause between inhalation and exhalation
         );
 
         return () => {

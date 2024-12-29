@@ -17,11 +17,11 @@ interface IProps {
 const InhaleHoldingCountdown = ({ setPhase, round }: IProps) => {
     const context = useContext(BreathingContext);
 
-    const radius = 256; // Радіус кола
+    const radius = 256;
 
     const renderer: CountdownRendererFn = (props) => {
         const progress = props.total / (BREATHING_INHALE_HOLD_TIME * 1000);
-        const angle = 360 * (1 - progress); // Поточний кут (градуси)
+        const angle = 360 * (1 - progress); // Current angle (degrees)
 
         return (
             <div>
@@ -44,7 +44,7 @@ const InhaleHoldingCountdown = ({ setPhase, round }: IProps) => {
                 <svg
                     className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 bg-blue-200 dark:border-sky-700 dark:bg-sky-700 md:h-[384px] md:w-[384px]'
                     viewBox='0 0 512 512'>
-                    {/* Сектор "Pacman" */}
+                    {/* "Pacman" */}
                     <path
                         d={describeArc(256, 256, radius, 0, angle)}
                         className='fill-sky-50 dark:fill-sky-950'

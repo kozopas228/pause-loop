@@ -18,17 +18,21 @@ enum TimerPhaseEnum {
 }
 
 const size = 300;
-const radius = 18; // Радіус основного кола
-const strokeWidth = 1; // Товщина лінії
+const radius = 18; // Radius of a main circle
+const strokeWidth = 1;
 
-/*  Це скоригований радіус кола, який враховує товщину обводки (strokeWidth).
-Він потрібен для правильного розташування обводки в межах видимого кола.
-У SVG, коли ви додаєте обводку (strokeWidth), її частина виходить за межі визначеного радіуса.
-Щоб малювати обводку всередині видимої області, потрібно зменшити радіус на половину товщини обводки. */
+/*
+This is the adjusted radius of the circle, which takes into account the strokeWidth.
+This is needed to properly position the stroke within the visible circle.
+In SVG, when you add a stroke (strokeWidth), part of it extends beyond the defined radius.
+To draw a stroke within the visible area, you need to reduce the radius by half the stroke width.
+*/
 const normalizedRadius = radius - strokeWidth / 2;
 
-/* Це довжина кола, яка використовується для розрахунку, наскільки частину кола потрібно зафарбувати,
-щоб показати прогрес. */
+/*
+This is the circumference of the circle, which is used to calculate how much of the circle needs to be filled in,
+to show progress.
+*/
 const circumference = 2 * Math.PI * normalizedRadius;
 
 const VisionTimer = () => {
@@ -158,9 +162,9 @@ const VisionTimer = () => {
                 style={{ width: size, height: size }}>
                 <svg
                     className='h-full w-full -rotate-90 transform'
-                    viewBox={`0 0 ${radius * 2} ${radius * 2}`} // Масштабне вікно
+                    viewBox={`0 0 ${radius * 2} ${radius * 2}`}
                 >
-                    {/* Фонова лінія */}
+                    {/* Background line */}
                     <circle
                         cx={radius}
                         cy={radius}
@@ -169,7 +173,7 @@ const VisionTimer = () => {
                         fill='none'
                         className='stroke-emerald-900 dark:stroke-emerald-50'
                     />
-                    {/* Прогрес */}
+                    {/* Progress */}
                     <circle
                         cx={radius}
                         cy={radius}
@@ -188,7 +192,7 @@ const VisionTimer = () => {
                     />
                 </svg>
                 <Countdown
-                    date={startTime + currentPhaseFullDurationMs + 10} // 10 додається через баг, тому що інколи відображається на 1 менше потрібного
+                    date={startTime + currentPhaseFullDurationMs + 10} // 10 is added due to a bug, because sometimes it displays 1 less than needed
                     renderer={renderer}
                     intervalDelay={10}
                     precision={3}
