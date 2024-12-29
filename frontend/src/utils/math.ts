@@ -1,12 +1,12 @@
-/* Це функція, яка перетворює полярні координати (радіус і кут) у декартові координати (x, y).
+/* This is a function that converts polar coordinates (radius and angle) to Cartesian coordinates (x, y).
 
-Чому це потрібно?
-SVG працює з декартовою системою координат, де всі елементи (наприклад, коло, дуга)
-позиціонуються за допомогою значень x і y. Але для створення дуг (наприклад, у випадку сектора кола або "Pacman")
-ми використовуємо полярні координати, що зручніше, коли маємо справу з кутами та радіусами.
+Why is this needed?
+SVG works with a Cartesian coordinate system, where all elements (e.g. circle, arc)
+are positioned using x and y values. But to create an arc (e.g. in the case of a sector of a circle or "Pacman")
+we use polar coordinates, which is more convenient when dealing with angles and radii.
 
-Функція polarToCartesian обчислює кінцеві точки дуги на основі центральної точки, радіусу і кута.
- */
+The polarToCartesian function calculates the endpoints of an arc based on the center point, radius, and angle.
+*/
 
 export function polarToCartesian(
     centerX: number,
@@ -22,18 +22,18 @@ export function polarToCartesian(
     };
 }
 
-/* Ця функція генерує шлях (d) для SVG-елемента <path>, який створює дугу (сектор) у
-вигляді "пирога" або "Pacman". Вона використовує функцію polarToCartesian для обчислення координат
-початкової та кінцевої точок дуги, а також будує шлях на основі цих точок.
+/* This function generates a path (d) for an SVG <path> element that creates an arc (sector) in the shape of a "pie" or "Pacman".
+It uses the polarToCartesian function to calculate the coordinates of the arc's start and end points,
+and builds the path based on those points.
 
-Як це працює:
-SVG дозволяє створювати дуги за допомогою команди A (arc) у шляху d. Для цього потрібно:
+How it works:
+SVG allows you to create arcs using the A (arc) command in a path d. To do this, you need to:
 
-Знати координати початкової та кінцевої точок дуги.
-Вказати радіус дуги.
-Задати кут і напрямок (великі/малі дуги та напрямок обертання).
+Know the coordinates of the start and end points of the arc.
+Specify the radius of the arc.
+Specify the angle and direction (major/minor arcs and direction of rotation).
+*/
 
- */
 export function describeArc(
     x: number,
     y: number,

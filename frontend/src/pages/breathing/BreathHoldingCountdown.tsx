@@ -24,16 +24,16 @@ interface IProps {
 const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
     const context = useContext(BreathingContext);
 
-    const radius = 256; // Радіус кола
+    const radius = 256;
 
     useEffect(() => {
-        // грати "клац" кожну секунду
+        // play "tick" every second
         if (context?.tickAudioRef.current) {
             context.tickAudioRef.current.volume = 0.2;
             context.tickAudioRef.current.play();
         }
 
-        // за 10 секунд до кінця перестати "клацати" і почати "клацати" більш агресивно
+        // 10 seconds before the end, stop "ticking" and start "ticking" more aggressively
         const audioTickFastTimeout = setTimeout(
             () => {
                 context?.tickAudioRef.current?.pause();
@@ -66,7 +66,7 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
     const renderer: CountdownRendererFn = (props) => {
         const progress =
             props.total / (BREATHING_BREATH_HOLD_BASE_TIME * 1000 * round);
-        const angle = 360 * (1 - progress); // Поточний кут (градуси)
+        const angle = 360 * (1 - progress);
 
         return (
             <motion.div
@@ -88,7 +88,7 @@ const BreathHoldingCountdown = ({ setPhase, round }: IProps) => {
                 <svg
                     className='rotate-270 z-0 h-[256px] w-[256px] transform rounded-full border border-blue-200 dark:border-sky-700 md:h-[384px] md:w-[384px]'
                     viewBox='0 0 512 512'>
-                    {/* Сектор "Pacman" */}
+                    {/* "Pacman" */}
                     <path
                         d={describeArc(256, 256, radius, 0, angle)}
                         className='fill-blue-200 dark:fill-sky-700'

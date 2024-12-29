@@ -84,9 +84,9 @@ export default {
   			'accordion-up': 'accordion-up 0.2s ease-out'
   		},
 		transitionDuration: {
-			'3000': '3000ms', // 3 секунди
-			'4000': '4000ms', // 4 секунди
-			'6000': '6000ms', // 6 секунд
+			'3000': '3000ms', // 3 seconds
+			'4000': '4000ms', // 4 seconds
+			'6000': '6000ms', // 6 seconds
 		},
   	}
   },

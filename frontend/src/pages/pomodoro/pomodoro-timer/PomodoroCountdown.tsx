@@ -124,7 +124,7 @@ const PomodoroCountdown = ({
     return (
         <>
             <Countdown
-                date={startTime + currentPhaseFullDurationMs + 10} // 10 додається через баг, тому що інколи відображається на 1 менше потрібного
+                date={startTime + currentPhaseFullDurationMs + 10} // 10 is added due to a bug, because sometimes it displays 1 less than needed
                 renderer={renderer}
                 intervalDelay={10}
                 precision={3}

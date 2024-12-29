@@ -12,7 +12,7 @@ import { useTheme } from '@/shadcn/components/theme-provider.tsx';
 
 const NoisePage = () => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [volume, setVolume] = useState(10); // Початкове значення гучності
+    const [volume, setVolume] = useState(10); // Initial volume value
     const [isShowDescription, setIsShowDescription] = useState(false);
 
     function handlePlayPauseClick() {
