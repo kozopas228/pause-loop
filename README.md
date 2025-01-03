@@ -1,24 +1,24 @@
 # Pause Loop
 
-// here will be project description
+Pause Loop is a website designed to support health and productivity while working at a computer. I originally created it for personal use but am sharing it in case others find it helpful.
+
+## 🌟 Description
+Pause Loop offers a set of tools to maintain eye health, enhance focus, and improve overall well-being:
+
+* **20/20/20 Timer**: encourages regular eye breaks.
+* **Pomodoro Timer**: helps structure work and rest sessions.
+* **Brown Noise**: creates a calming background for better concentration.
+* **Breathing**: promotes stress relief and boosts overall vitality.
+
+This program makes working at a computer more comfortable and healthier.
 
 
-## 🚀 Features
-* **Frontend**:
-  * Built with [**React**](https://react.dev/) and [**Vite**](https://vite.dev/).
-  * Styled with [**TailwindCSS**](https://tailwindcss.com/) and [**ShadCN**](https://ui.shadcn.com/).
-  * [**Redux Toolkit**](https://redux-toolkit.js.org/) for global storage.
-
-
-
-## 🛠 Installation
+## 🛠 Installation & Development
 
 ```bash
 cd ../frontend
 npm install
 ```
-
-## 💻 Development
 
 Start the frontend development server:
 ```bash
@@ -29,7 +29,6 @@ This will launch the **React** application. You can access it at http://localhos
 
 
 
-
 ## 📂 Project Structure
     frontend/
     ├── public/             # Static assets (e.g., images, fonts)
@@ -37,11 +36,8 @@ This will launch the **React** application. You can access it at http://localhos
     │   ├── assets/         # Statis assets folder #2
     │   ├── components/     # Reusable UI components, other than shadcn
     │   ├── hooks/
-    │   ├── pages/          
-    │   ├── services/       # Requests to API
-    │   ├── shadcn/         # Only shadcn components
-    │   ├── store/          # Configured Redux
-    │   ├── types/          
+    │   ├── pages/
+    │   ├── shadcn/         # Only shadcn components 
     │   └── utils/
     ├── .env.development    # Local environment variables
     ├── .env.production     # Production environment variables
