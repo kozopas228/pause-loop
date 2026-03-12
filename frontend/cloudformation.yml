@@ -11,13 +11,10 @@ Resources:
     Properties:
       BucketName: pause-loop-bucket-static
       PublicAccessBlockConfiguration:
-        BlockPublicAcls: false
-        BlockPublicPolicy: false
-        IgnorePublicAcls: false
-        RestrictPublicBuckets: false
-      WebsiteConfiguration:
-        IndexDocument: index.html
-        ErrorDocument: index.html
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
       Tags:
         - Key: "app"
           Value: !Ref AppTagValue
@@ -25,31 +22,43 @@ Resources:
 
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
+    DependsOn: CloudFrontDistribution
     Properties:
       Bucket: !Ref StaticSiteBucket
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
-          - Sid: PublicReadGetObject
+          - Sid: AllowCloudFrontRead
             Effect: Allow
-            Principal: "*"
-            Action: "s3:GetObject"
-            Resource:
-              - !Sub "arn:aws:s3:::${StaticSiteBucket}"
-              - !Sub "arn:aws:s3:::${StaticSiteBucket}/*"
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "arn:aws:s3:::${StaticSiteBucket}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}"
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: pause-loop-oac
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
 
   CloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
     Properties:
       DistributionConfig:
         PriceClass: PriceClass_100 # the cheapest version
+        Enabled: true
+        DefaultRootObject: index.html
         Origins:
           - Id: S3Origin
-            DomainName: !Sub "${StaticSiteBucket}.s3-website.${AWS::Region}.amazonaws.com"
-            CustomOriginConfig:
-              HTTPPort: 80
-              HTTPSPort: 443
-              OriginProtocolPolicy: 'http-only'
+            DomainName: !GetAtt StaticSiteBucket.RegionalDomainName
+            S3OriginConfig: {}
+            OriginAccessControlId: !Ref OriginAccessControl
         DefaultCacheBehavior:
           TargetOriginId: S3Origin
           ViewerProtocolPolicy: redirect-to-https
@@ -64,7 +73,12 @@ Resources:
             QueryString: false
             Cookies:
               Forward: none
-        Enabled: true
+        Aliases:
+          - "pauseloop.com"
+        ViewerCertificate:
+          AcmCertificateArn: "<certificate arn>"
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
       Tags:
         - Key: "app"
           Value: !Ref AppTagValue
